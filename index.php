@@ -111,22 +111,22 @@
                             Silahkan menggunakan identitas yang terdaftar
                         </p>
                         <!-- form -->
-                        <form>
+                        <form method="post" action="config/auth.php">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">NIK/NIM</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" />
-                                <div id="emailHelp" class="form-text">
+                                <label for="nim" class="form-label">NIK/NIM</label>
+                                <input type="number" class="form-control" id="nim"
+                                    aria-describedby="nimHelp" name="nim"  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" />
+                                <div id="nimHelp" class="form-text">
                                     Gunakan NIM/NIK yang telah terdaftar.
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" />
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" />
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                <label class="form-check-label" for="exampleCheck1">Ingat Saya
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> />
+                                <label class="form-check-label" for="remember">Ingat Saya
                                 </label>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">
@@ -135,7 +135,7 @@
                         </form>
                         <div class="another-action text-center mt-4 text-blue">
                             <p>
-                                Belum Punya Akun ? <a href="register.html">Daftar Disini</a>
+                                Belum Punya Akun ? <a href="/register">Daftar Disini</a>
                             </p>
                             <a href="#" class="text-bold text-blue" style="text-decoration: none">Lupa Password ?</a>
                         </div>
