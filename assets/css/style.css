@@ -13,6 +13,7 @@ body {
 .header-title {
   font-family: "Yeseva One";
   font-size: 5vh;
+  color: #183a64 !important;
 }
 
 .company {
@@ -86,6 +87,13 @@ body {
   background-color: #183a64;
 }
 
+.bg-myblue {
+  background-color: #183a64;
+}
+.bg-myorange {
+  background-color: #ff9035;
+}
+
 .label-wrapper {
   padding: 2px;
 }
@@ -114,4 +122,95 @@ body {
 .nav-linku {
   text-decoration: none;
   color: #183a64;
+}
+
+.header-subtitle {
+  font-size: 2.5vh;
+  font-weight: 300;
+  color: rgb(128, 128, 128);
+}
+
+.highlighted {
+  font-weight: 700;
+}
+
+.job-label {
+  border-radius: 15px;
+  background-color: #feca54;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.career-jobdesc {
+  color: #183a64;
+}
+
+.job-title {
+  font-weight: bold;
+  font-size: 3vh;
+  margin-bottom: -0.5px;
+}
+
+.job-overview {
+  text-align: justify;
+}
+
+/* stepper */
+.steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.step-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 2px #64d073;
+  background-color: white;
+  transition: 0.4s;
+  margin-top: 27px;
+  font-size: 12px;
+}
+
+.step-title {
+  font-size: 2.5vh;
+}
+
+.step-button[aria-expanded="true"] {
+  width: 30px;
+  height: 30px;
+  background-color: #64d073;
+  color: #fff;
+  margin-top: -27px;
+}
+.done {
+  background-color: #64d073;
+  color: #fff;
+}
+.step-item {
+  z-index: 10;
+  margin-top: auto;
+  text-align: center;
+}
+#progress {
+  -webkit-appearance: none;
+  position: absolute;
+  width: 95%;
+  z-index: 5;
+  height: 10px;
+  margin-left: 18px;
+  margin-bottom: 18px;
+}
+/* to customize progress bar */
+#progress::-webkit-progress-value {
+  background-color: blue;
+  transition: 0.5s ease;
+}
+#progress::-webkit-progress-bar {
+  background-color: #64d073;
 }
