@@ -67,17 +67,17 @@
     <!-- Volt CSS -->
     <link type="text/css" href="css/volt.css" rel="stylesheet">
 
-    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+    <!-- NOTICE: You can use the _analytics.php partial to include production code specific code & trackers -->
 
 </head>
 
 <body>
 
-    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+    <!-- NOTICE: You can use the _analytics.php partial to include production code specific code & trackers -->
 
 
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-        <a class="navbar-brand me-lg-5" href="index.html">
+        <a class="navbar-brand me-lg-5" href="index.php">
             <img class="navbar-brand-dark" src="assets/img/brand/light.svg" alt="Volt logo" /> <img
                 class="navbar-brand-light" src="assets/img/brand/dark.svg" alt="Volt logo" />
         </a>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="d-block">
                         <h2 class="h5 mb-3">Hi, Jane</h2>
-                        <a href="pages/examples/sign-in.html"
+                        <a href="pages/examples/sign-in.php"
                             class="btn btn-secondary btn-sm d-inline-flex align-items-center">
                             <svg class="icon icon-xxs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -127,7 +127,7 @@
             </div>
             <ul class="nav flex-column pt-3 pt-md-0">
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link d-flex align-items-center">
+                    <a href="index.php" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <img src="assets/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
                         </span>
@@ -135,7 +135,7 @@
                     </a>
                 </li>
                 <li class="nav-item  active ">
-                    <a href="pages/dashboard/dashboard.html" class="nav-link">
+                    <a href="?p=dashboard" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="pages/transactions.html" class="nav-link">
+                    <a href="?p=transactions" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -161,7 +161,7 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                    <a href="pages/tables.html" class="nav-link">
+                    <a href="?p=tables" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -383,8 +383,9 @@
                 </div>
             </div>
         </nav>
+        <!-- Section content -->
 
-        <div class="row mt-5">
+        <!-- <div class="row mt-5">
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
                 <div class="card border-0 shadow">
                     <div class="card-body">
@@ -426,12 +427,12 @@
                                                 d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
                                                 clip-rule="evenodd"></path>
                                         </svg><span class="text-success fw-bolder">22%</span></div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="col-12 col-sm-6 col-xl-4 mb-4">
                 <div class="card border-0 shadow">
                     <div class="card-body">
@@ -495,7 +496,7 @@
                                                 d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
                                                 clip-rule="evenodd"></path>
                                         </svg><span class="text-success fw-bolder">4%</span></div>
-                                </div> -->
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -559,7 +560,7 @@
                                     <li class="list-group-item px-0">
                                         <div class="row align-items-center">
                                             <div class="col-auto">
-                                                <!-- Avatar -->
+                                                <!-- Avatar 
                                                 <a href="#" class="avatar">
                                                     <img class="rounded" alt="Image placeholder"
                                                         src="../assets/logo/perusahaan.png">
@@ -598,8 +599,22 @@
 
                 </div>
             </div>
-        </div>
-
+        </div> -->
+        
+        <?php
+            if ( ! empty($_GET['p']) ) :
+                $file = scandir( 'pages' );
+                unset( $file[0], $file[1] );
+                if (in_array($_GET['p'].'.php', $file)) :
+                    require_once('pages/'.$_GET['p'].'.php');
+                else :
+                    echo "<h1>Halaman Tidak Ditemukan!!!</h1>";
+                endif;
+            else :
+                include_once 'pages/dashboard.php';
+            endif;
+            ?>
+        <!-- end Section Content -->
 
         <div class="card theme-settings bg-gray-800 theme-settings-expand" id="theme-settings-expand">
             <div class="card-body bg-gray-800 text-white rounded-top p-3 py-2">
