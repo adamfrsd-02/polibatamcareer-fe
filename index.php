@@ -1,3 +1,6 @@
+<?php
+include 'config/conn.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,6 +159,7 @@
     <div id="carouselExampleControls" class="carousel slide mb-5" data-bs-ride="carousel">
         <div class="carousel-inner container mt-4">
             <!-- item carousel -->
+            
             <div class="carousel-item active">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -177,9 +181,13 @@
                     </div>
                 </div>
             </div>
+            
             <!-- end item carousel -->
             <!-- item carousel -->
-            <div class="carousel-item">
+            
+            <!-- end item carousel -->
+            <!-- item carousel -->
+            <!-- <div class="carousel-item">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="left-text container">
@@ -199,30 +207,7 @@
                         <img src="assets/images/hero.png" class="d-block w-100 container" alt="..." />
                     </div>
                 </div>
-            </div>
-            <!-- end item carousel -->
-            <!-- item carousel -->
-            <div class="carousel-item">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="left-text container">
-                            <p class="text-bold text-blue text-xl">
-                                Informasi <br />
-                                Lowongan Kerja <br />
-                                Alumni & Mahasiswa
-                            </p>
-                            <p class="text-md text-blue text-regular">
-                                Gunakan identitas mahasiswamu, dan mulailah untuk mencari
-                                kerja melalui platform resmi Politeknik Negeri Batam.
-                            </p>
-                            <button class="btn btn-primary">Lihat Lowongan</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <img src="assets/images/hero.png" class="d-block w-100 container" alt="..." />
-                    </div>
-                </div>
-            </div>
+            </div> -->
             <!-- end item carousel -->
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -324,22 +309,26 @@
             </div>
             <div class="owl-carousel mt-1 px-2">
                 <!-- items -->
+                <?php
+                $query = mysqli_query($koneksi, "SELECT OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
+                //print_r($query);
+                foreach($query as $item) :
+            ?>
                 <div class="card py-2" style="width: auto; border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="assets/logo/perusahaan2.png" class="w-100 h-100" alt="" />
+                                <img src="assets/logo/perusahaan2.png" class="w-100 h-100" />
                             </div>
                             <div class="col-md-6">
                                 <h5 class="card-title text-blue">
-                                    <b>Web-Designer</b>
+                                    <b><?php echo $item['OCCUPATIONTITLE']?></b>
                                 </h5>
                                 <p class="card-text text-blue text-justify">
-                                    Kami mencari alumni yang siap untuk terjun langsung dalam
-                                    proyek nyata . . .
+                                    <?= $item['JOBDESCRIPTION']?>
                                 </p>
                                 <div class="label-wrapper row">
-                                    <div class="label label-orange me-2">UI Design</div>
+                                    <div class="label label-orange me-2"><?= $item['CATEGORY']?></div>
                                     <div class="label label-blue">UX Design</div>
                                 </div>
                             </div>
@@ -352,9 +341,10 @@
                         </div>
                     </div>
                 </div>
+                <?php endforeach;?>
                 <!-- itemss -->
                 <!-- items -->
-                <div class="card py-2" style="width: auto; border-radius: 20px">
+                <!-- <div class="card py-2" style="width: auto; border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
@@ -381,10 +371,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- itemss -->
                 <!-- items -->
-                <div class="card py-2" style="width: auto; border-radius: 20px">
+                <!-- <div class="card py-2" style="width: auto; border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
@@ -411,10 +401,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- itemss -->
                 <!-- items -->
-                <div class="card py-2" style="width: auto; border-radius: 20px">
+                <!-- <div class="card py-2" style="width: auto; border-radius: 20px">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
@@ -441,13 +431,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- itemss -->
             </div>
             <div class="container">
                 <center>
                     <div class="footer">
-                        <button class="btn btn-secondary text-center" onclick="location.href='career.html'">Lowongan
+                        <button class="btn btn-secondary text-center mt-5" onclick="location.href='career.html'">Lowongan
                             Lainnya</button>
                     </div>
                 </center>

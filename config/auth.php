@@ -2,12 +2,12 @@
 require "conn.php";
 session_start();
 if(!empty($_POST["nim"])) {
-	$sql = "Select * from users where nim = '" . $_POST["nim"] . "'";
+	$sql = "Select * from tblmahasiswa where STUDENTID = '" . $_POST["nim"] . "'";
         if(!isset($_COOKIE["member_login"])) {
             $sql .= " AND password = '" . md5($_POST["password"]) . "'";
 	}
         $result = mysqli_query($koneksi,$sql);
-	$user = mysqli_fetch_array($result);
+		$user = mysqli_fetch_array($result);
 	if($user) {
 			$_SESSION["nim"] = $user["nim"];
 			
