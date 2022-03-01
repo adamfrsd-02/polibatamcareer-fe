@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Mar 2022 pada 13.28
+-- Waktu pembuatan: 01 Mar 2022 pada 15.25
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -52,7 +52,7 @@ CREATE TABLE `tblapplicants` (
 --
 
 INSERT INTO `tblapplicants` (`APPLICANTID`, `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `SEX`, `CIVILSTATUS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `USERNAME`, `PASS`, `EMAILADDRESS`, `CONTACTNO`, `DEGREE`, `APPLICANTPHOTO`, `NATIONALID`) VALUES
-(2019016, 'asd', 'asd', 'asd', 'asd', 'Female', 'none', '1980-01-29', 'asd', 39, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '12312312', 'asd', 'photos/final.png', ''),
+(2019016, 'asd', 'asd', 'asd', 'asd', 'Female', 'none', '1980-01-29', 'asd', 39, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '12312312', 'asd', 'photos/ktp.jpeg', ''),
 (2019018, 'asdasd', 'asd', 'asd', 'sadas', 'Female', 'Single', '1992-01-12', 'sad', 27, 'ss', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 'a@gmil.com', 'sad', 'sad', '', ''),
 (2019020, 'sad', 'sad', 'sad', 'asdsad', 'Female', 'Single', '1992-10-14', 'asdsad', 27, 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', 'a@gmil.com', '123123', 'sadsadsad', 'photos/077db70b-ab84-46c4-bbaa-a5dd6b7332a4_200x200.png', '');
 
@@ -275,9 +275,16 @@ CREATE TABLE `tblmahasiswa` (
 
 CREATE TABLE `tblprogress` (
   `id_progress` int(11) NOT NULL,
-  `id_company` int(11) NOT NULL,
+  `COMPANYID` int(11) NOT NULL,
   `detail_progress` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tblprogress`
+--
+
+INSERT INTO `tblprogress` (`id_progress`, `COMPANYID`, `detail_progress`) VALUES
+(1, 2, 'a:3:{i:0;s:9:\"assesment\";i:1;s:9:\"interview\";i:2;s:10:\"third step\";}');
 
 -- --------------------------------------------------------
 
@@ -312,8 +319,15 @@ CREATE TABLE `tbl_user_progress` (
   `id_progress` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `progres_step` int(11) NOT NULL,
-  `appliance_status` varchar(50) NOT NULL
+  `appliance_status` enum('reject','pending','accepted','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_user_progress`
+--
+
+INSERT INTO `tbl_user_progress` (`id_user_progress`, `id_progress`, `id_user`, `progres_step`, `appliance_status`) VALUES
+(1, 1, 18, 2, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -393,6 +407,12 @@ ALTER TABLE `tblusers`
   ADD PRIMARY KEY (`USERID`);
 
 --
+-- Indeks untuk tabel `tbl_user_progress`
+--
+ALTER TABLE `tbl_user_progress`
+  ADD PRIMARY KEY (`id_user_progress`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -454,7 +474,7 @@ ALTER TABLE `tbljobregistration`
 -- AUTO_INCREMENT untuk tabel `tblprogress`
 --
 ALTER TABLE `tblprogress`
-  MODIFY `id_progress` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_progress` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
