@@ -32,6 +32,17 @@ body {
   border-style: none;
 }
 
+.btn-primary {
+  border-radius: 10px;
+  width: 240px;
+  height: 70px;
+  background-color: #183a64;
+  border-color: none !important;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-style: none;
+}
+
 .btn-secondary {
   border-style: none;
   border-radius: 10px;

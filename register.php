@@ -175,11 +175,11 @@
                             <label class="form-label" for="form3Example1m"
                               >Jurusan</label
                             >
-                            <input
-                              type="text"
-                              id="form3Example1m"
-                              class="form-control form-control-lg"
-                            />
+                            <select name="jurusan" id="">
+                              <option value="informatika">Teknik Informatika</option>
+                              <option value="administrasi"></option>
+                              <option value=""></option>
+                            </select>
                           </div>
                         </div>
                         <div class="col-md-6 mb-4">
