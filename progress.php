@@ -1,3 +1,6 @@
+<?php
+    require_once('include/database.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -263,10 +266,59 @@
                             </div>
 
                         </div>
+                        <?php
+                $sql = "SELECT id_progress,detail_progress FROM tblprogress ";
+                $mydb->setQuery($sql);
+                $cur = $mydb->loadResultList();
+                //print_r($query);
+                $array = array("assesment", "interview", "third step");
+                $serialized_array = serialize($array); 
+                // var_dump($serialized_array);
+                $i=1;
+                $tahap = "";
+                        ?>
+                        
                         <div class="card">
                             <div class="steps">
                                 <progress id="progress" value=0 max=100></progress>
-                                <div class="step-item">
+                                <?php
+                                foreach($cur as $item) :
+                                    // echo "<pre>".print_r(,1)."</pre>";
+                                    $sql2 = "SELECT * FROM tbl_user_progress where id_progress = '$item->id_progress' ";
+                                    $mydb->setQuery($sql2);
+                                    $cur2 = $mydb->loadResultList();
+                                    $progress = 0;
+                                    foreach ($cur2 as $key ) {
+                                        // echo "<pre>".print_r($key,1)."</pre>";
+                                        $progress = $key->progres_step;
+                                    }
+                                    foreach(unserialize($item->detail_progress) as $list) :
+                                        // echo "<pre>".print_r($progress,1)."</pre>";
+                                        ?>
+                                        <div class="step-item">
+                                            <button class="step-button text-center" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" aria-expanded="<?php echo ($i > $progress) ? "false" : "true" ?>" aria-controls="collapseOne">
+                                                <?php
+                                                    echo $i;
+                                                ?>
+                                            </button>
+                                            <div class="step-title">
+                                                <?php
+                                                if ($i == $progress) {
+                                                    $tahap = $list;
+                                                }
+                                                    echo $list;
+                                                ?>
+                                            </div>
+                                        </div> 
+                                <?php  
+                                            $i++;
+                                        endforeach;
+                                endforeach;
+                                ?>
+
+
+                                <!-- <div class="step-item">
                                     <button class="step-button text-center" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         1
@@ -364,12 +416,14 @@
                                     <div class="step-title">
                                         Tenth Step
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="ps-3"
                                 style="margin-top: -10px; display: flex; flex-direction: row; align-items: baseline;">
                                 <p class="header-subtitle">Sedang Tahap </p>
-                                <p class="ms-2"><b>Asesemen</b></p>
+                                <p class="ms-2"><b><?php
+                                    echo $tahap;
+                                ?></b></p>
 
                             </div>
                         </div>
