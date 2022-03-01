@@ -173,7 +173,7 @@ include 'config/conn.php';
                                 Gunakan identitas mahasiswamu, dan mulailah untuk mencari
                                 kerja melalui platform resmi Politeknik Negeri Batam.
                             </p>
-                            <button class="btn btn-primary">Lihat Lowongan</button>
+                            <a class="btn btn-primary pt-3" href="career.html">Lihat Lowongan</a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -259,7 +259,7 @@ include 'config/conn.php';
                     </div>
                 </div>
                 <div class="footer">
-                    <button class="btn btn-secondary">Lihat Selengkapnya</button>
+                    <a href="partner.html" class="btn btn-secondary text-center mt-auto pt-3">Lihat Selengkapnya</a>
                 </div>
             </center>
         </div>
@@ -310,7 +310,7 @@ include 'config/conn.php';
             <div class="owl-carousel mt-1 px-2">
                 <!-- items -->
                 <?php
-                $query = mysqli_query($koneksi, "SELECT OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
+                $query = mysqli_query($koneksi, "SELECT OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE, COMPANYLOGO FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
                 //print_r($query);
                 foreach($query as $item) :
             ?>
@@ -318,7 +318,7 @@ include 'config/conn.php';
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="assets/logo/perusahaan2.png" class="w-100 h-100" />
+                                <img src="assets/upload/company_logo/<?= $item['COMPANYLOGO']?>" class="w-100 h-100" />
                             </div>
                             <div class="col-md-6">
                                 <h5 class="card-title text-blue">
@@ -329,11 +329,11 @@ include 'config/conn.php';
                                 </p>
                                 <div class="label-wrapper row">
                                     <div class="label label-orange me-2"><?= $item['CATEGORY']?></div>
-                                    <div class="label label-blue">UX Design</div>
+                                    <!-- <div class="label label-blue">UX Design</div> -->
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <p class="card-title text-bold text-blue">Rp. 5.000.000</p>
+                                <p class="card-title text-bold text-blue">Rp. <?= number_format($item['SALARIES'],00,',','.')?>,-</p>
                                 <p class="card-text text-blue" style="margin-top: -10px">
                                     per bulan
                                 </p>
