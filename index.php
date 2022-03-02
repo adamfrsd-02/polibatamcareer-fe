@@ -1,6 +1,28 @@
 <?php
-include 'config/conn.php';
+   require_once("include/initialize.php");
+   include("config/conn.php");
+
+   if (isset($_SESSION['APPLICANTID'])) { 
+        $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tbljob` ORDER BY `DATEPOSTED` DESC";
+        $mydb->setQuery($sql);
+        $showNotif = $mydb->loadSingleResult();
+        $notif =isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
+    
+    
+        $applicant = new Applicants();
+        $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
+    
+        $sql ="SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=0 AND `HVIEW`=0 AND `APPLICANTID`='{$appl->APPLICANTID}'";
+        $mydb->setQuery($sql);
+        $showMsg = $mydb->loadSingleResult();
+        $msg =isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
+    
+    
+    
+    } 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,11 +112,22 @@ include 'config/conn.php';
               >
             </li>-->
                 </ul>
-                <div class="d-flex">
+                <?php if (!isset($_SESSION['APPLICANTID'])) { ?>
+                    <div class="d-flex">
                     <button class="btn btn-outline-blue shadow-sm px-5" data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         Login
                     </button>
+             <?php }else{ ?>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="<?php echo web_root.'applicant/';?>"><i class="fa fa-user"></i> Howdy, <?php echo $appl->FNAME. ' '.$appl->LNAME ;?></a></li>
+          
+                        <li class="nav-item"><a class="nav-link" href="<?php echo web_root.'logout.php';?>"><i class="fa fa-user"></i> Logout</a></li>
+                    </ul>
+                </div>
+             <?php } ?> 
+                
                 </div>
             </div>
         </div>
@@ -114,18 +147,18 @@ include 'config/conn.php';
                             Silahkan menggunakan identitas yang terdaftar
                         </p>
                         <!-- form -->
-                        <form method="post" action="config/auth.php">
+                        <form method="post" action="process.php?action=login">
                             <div class="mb-3">
                                 <label for="nim" class="form-label">NIK/NIM</label>
-                                <input type="number" class="form-control" id="nim"
-                                    aria-describedby="nimHelp" name="nim"  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" />
+                                <input type="text" class="form-control" id="nim"
+                                    aria-describedby="nimHelp" name="USERNAME"  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" />
                                 <div id="nimHelp" class="form-text">
                                     Gunakan NIM/NIK yang telah terdaftar.
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" />
+                                <input type="password" class="form-control" id="password" name="PASS" />
                             </div>
                             <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> />

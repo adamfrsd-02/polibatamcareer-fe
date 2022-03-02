@@ -1,5 +1,6 @@
 <?php
-    require_once('../include/database.php');
+    require_once("../include/initialize.php");
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -289,6 +290,11 @@
                 // var_dump($serialized_array);
                 $i=1;
                 $tahap = "";
+                echo "<pre>".print_r($_SESSION,1)."</pre>";
+                if (!isset($_SESSION['APPLICANTID'])) {
+                    # code...
+                    redirect(web_root.'index.php');
+                }
                         ?>
 
                         <div class="card">
