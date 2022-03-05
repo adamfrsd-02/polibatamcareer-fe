@@ -58,13 +58,13 @@
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="#">Home</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="index.html">Home</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="cv.html">Curriculum Vitae</a>
+                        <a class="nav-link text-semibold text-blue" href="cv.php">Curriculum Vitae</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="career.html">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="career.php">Career</a>
                     </li>
                     <center>
                         <div class="dropdown d-none d-sm-block d-md-none">

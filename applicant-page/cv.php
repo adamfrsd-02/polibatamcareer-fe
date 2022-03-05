@@ -1,3 +1,11 @@
+<?php
+    require_once("../include/initialize.php");
+    
+    if (!isset($_SESSION['APPLICANTID'])) {
+        # code...
+        redirect(web_root.'index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,13 +86,13 @@
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="#">Home</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="index.html">Home</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="cv.html">Curriculum Vitae</a>
+                        <a class="nav-link text-semibold text-blue" href="cv.php">Curriculum Vitae</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="career.html">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="career.php">Career</a>
                     </li>
                     <center>
                         <div class="dropdown d-none d-sm-block d-md-none">
@@ -263,6 +271,15 @@
                 </div>
             </div>
         </center>
+        <?php
+            $applicantid = $_SESSION['APPLICANTID'];
+            $sql = "SELECT * FROM tblapplicants where APPLICANTID = '$applicantid'  ";
+            $mydb->setQuery($sql);
+            $cur = $mydb->loadResultList();
+            echo "<pre>".print_r($cur,1)."</pre>";
+            $i=1;
+            $tahap = "";
+        ?>
         <div class="body-profile mt-5">
             <div class="card p-5">
                 <form action="" method="post">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Mar 2022 pada 09.53
+-- Waktu pembuatan: 05 Mar 2022 pada 04.41
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -277,6 +277,8 @@ CREATE TABLE `tblmahasiswa` (
 CREATE TABLE `tblprogress` (
   `id_progress` int(11) NOT NULL,
   `COMPANYID` int(11) NOT NULL,
+  `JOBID` int(11) NOT NULL,
+  `APPLICANTID` int(11) NOT NULL,
   `detail_progress` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -284,8 +286,8 @@ CREATE TABLE `tblprogress` (
 -- Dumping data untuk tabel `tblprogress`
 --
 
-INSERT INTO `tblprogress` (`id_progress`, `COMPANYID`, `detail_progress`) VALUES
-(1, 2, 'a:3:{i:0;s:9:\"assesment\";i:1;s:9:\"interview\";i:2;s:10:\"third step\";}');
+INSERT INTO `tblprogress` (`id_progress`, `COMPANYID`, `JOBID`, `APPLICANTID`, `detail_progress`) VALUES
+(1, 2, 0, 2019016, 'a:3:{i:0;s:9:\"assesment\";i:1;s:9:\"interview\";i:2;s:10:\"third step\";}');
 
 -- --------------------------------------------------------
 
