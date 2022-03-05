@@ -175,11 +175,11 @@
             <!-- search section -->
             <hr>
             <div class="form-search">
-                <form action="" method="post">
+                <form action="career.php?keyword=" method="get">
                     <div class="row mb-4">
                         <div class="col-md-3">
                             <label for="" class="mb-2">Nama Perusahaan</label>
-                            <input type="text" class="form-control" placeholder="masukkan nama perusahaan">
+                            <input type="text" name="keyword" class="form-control" placeholder="masukkan nama perusahaan">
                         </div>
                         <div class="col-md-3">
                             <label for="" class="mb-2">Jenis Program</label>
@@ -208,7 +208,7 @@
             <hr>
             <!-- end search section -->
             <!-- search result section -->
-            <div class="row">
+                <div class="row">
                 <div class="header-subtitle py-3">
                     <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang
                         sesuai</span>
@@ -251,34 +251,54 @@
                 <h2 class="header-title w-50 mb-4" style="color: #183a64;">
                     Lowongan Kerja Terbaru
                 </h2>
-                <div class="owl-carousel mt-1 px-2">
+                <div class="owl-carousel mt-1 px-2 h-auto">
                     <!-- items -->
-                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                    <?php
+                        include 'config/conn.php';
+
+                        $query = "SELECT * FROM tbljob
+                        INNER JOIN tblcompany ON tbljob.COMPANYID=tblcompany.COMPANYID ORDER BY tbljob.DATEPOSTED DESC";
+                        $res = $koneksi->query($query);
+
+                        // echo '<pre>';
+                        // print_r(
+                        //     $res
+                        // );
+                        
+                        // echo '</pre>';
+                        foreach($res as $row) {
+                    ?>
+                    <div class="card p-4 px-4 h-auto" style="width: auto; border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
-                                    <div class="job-label py-2 px-4">UX Design</div>
+                                    <div class="job-label py-2 px-4"><?= $row['CATEGORY']?></div>
                                     <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body h-100">
                             <div class="logo p-3">
-                                <img src="assets/logo/perusahaan.png" alt="">
+                                <img src="assets/logo/<?= $row['COMPANYLOGO']?>" alt="">
                             </div>
                             <div class="career-jobdesc py-2">
+                                <h4>
+                                    <?= $row['COMPANYNAME']?>
+                                </h4>
                                 <p class="job-title">
-                                    Web Designer
+                                    <?= $row['OCCUPATIONTITLE']?>
                                 </p>
                                 <p class="job-overview">
-                                    Kami mencari alumni yang siap untuk terjun langsung dalam proyek nyata di industri .
-                                    . .
+                                   <?= $row['JOBDESCRIPTION']?>
                                 </p>
                             </div>
                             <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
                                 style="border-radius: 10px !important; border-style: none;">Apply</button>
                         </div>
                     </div>
+                    <?php
+                        }
+                    ?>
                     <!-- itemss -->
 
                 </div>

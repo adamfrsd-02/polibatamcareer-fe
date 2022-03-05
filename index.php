@@ -347,13 +347,13 @@
                 //print_r($query);
                 foreach($query as $item) :
             ?>
-                <div class="card py-2" style="width: auto; border-radius: 20px">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <img src="assets/upload/company_logo/<?= $item['COMPANYLOGO']?>" class="w-100 h-100" />
+                <div class="card py-2 h-100" style="width: auto; height:100%; border-radius: 20px">
+                    <div class="card-body h-100">
+                        <div class="row mt-0 h-100">
+                            <div class="col-md-3 h-100">
+                                <img src="assets/upload/company_logo/<?= $item['COMPANYLOGO']?>" class="align-middle" />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 h-100">
                                 <h5 class="card-title text-blue">
                                     <b><?php echo $item['OCCUPATIONTITLE']?></b>
                                 </h5>
@@ -365,7 +365,7 @@
                                     <!-- <div class="label label-blue">UX Design</div> -->
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 h-100>
                                 <p class="card-title text-bold text-blue">Rp. <?= number_format($item['SALARIES'],00,',','.')?>,-</p>
                                 <p class="card-text text-blue" style="margin-top: -10px">
                                     per bulan
