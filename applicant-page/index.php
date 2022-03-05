@@ -89,7 +89,7 @@
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="#">Home</a>
                     </li> -->
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="index.html">Home</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-semibold text-blue" href="cv.html">Curriculum Vitae</a>
@@ -263,7 +263,7 @@
             <div class="card mb-3">
                 <div class="row">
                     <div class="col-md-4 my-auto px-5">
-                        <img src="assets/logo/perusahaan.png" alt="">
+                        <img src="../assets/logo/perusahaan.png" alt="">
                     </div>
                     <div class="step col-md-8 d-none d-md-block py-5 pe-5">
                         <div class="company-profile">
@@ -291,7 +291,7 @@
                 $tahap = "";
                         ?>
 
-                        <div class="card">
+                        <div class="card px-3">
                             <div class="steps">
                                 <progress id="progress" value=0 max=100></progress>
                                 <?php
@@ -308,7 +308,7 @@
                                     foreach(unserialize($item->detail_progress) as $list) :
                                         // echo "<pre>".print_r($progress,1)."</pre>";
                                         ?>
-                                <div class="step-item">
+                                <div class="step-item" style="margin-top: -1px">
                                     <button class="step-button text-center" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne"
                                         aria-expanded="<?php echo ($i > $progress) ? "false" : "true" ?>"
@@ -447,7 +447,7 @@
             </div>
             <!-- End Item -->
             <!-- Item -->
-            <div class="card">
+            <!-- <div class="card">
                 <div class="row">
                     <div class="col-md-4 my-auto px-5">
                         <img src="assets/logo/perusahaan.png" alt="">
@@ -578,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- End Item -->
         </div>
     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Mar 2022 pada 15.25
+-- Waktu pembuatan: 05 Mar 2022 pada 04.41
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -143,15 +143,16 @@ CREATE TABLE `tblcompany` (
   `COMPANYADDRESS` varchar(90) NOT NULL,
   `COMPANYCONTACTNO` varchar(30) NOT NULL,
   `COMPANYSTATUS` varchar(90) NOT NULL,
-  `COMPANYMISSION` text NOT NULL
+  `COMPANYMISSION` text NOT NULL,
+  `COMPANYLOGO` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tblcompany`
 --
 
-INSERT INTO `tblcompany` (`COMPANYID`, `COMPANYNAME`, `COMPANYADDRESS`, `COMPANYCONTACTNO`, `COMPANYSTATUS`, `COMPANYMISSION`) VALUES
-(2, 'Lapmodo Batam', 'Batam Center', '8912994', '', 'Oke');
+INSERT INTO `tblcompany` (`COMPANYID`, `COMPANYNAME`, `COMPANYADDRESS`, `COMPANYCONTACTNO`, `COMPANYSTATUS`, `COMPANYMISSION`, `COMPANYLOGO`) VALUES
+(2, 'Lapmodo Batam', 'Batam Center', '8912994', '', 'Oke', 'perusahaan2.png');
 
 -- --------------------------------------------------------
 
@@ -276,6 +277,8 @@ CREATE TABLE `tblmahasiswa` (
 CREATE TABLE `tblprogress` (
   `id_progress` int(11) NOT NULL,
   `COMPANYID` int(11) NOT NULL,
+  `JOBID` int(11) NOT NULL,
+  `APPLICANTID` int(11) NOT NULL,
   `detail_progress` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -283,8 +286,8 @@ CREATE TABLE `tblprogress` (
 -- Dumping data untuk tabel `tblprogress`
 --
 
-INSERT INTO `tblprogress` (`id_progress`, `COMPANYID`, `detail_progress`) VALUES
-(1, 2, 'a:3:{i:0;s:9:\"assesment\";i:1;s:9:\"interview\";i:2;s:10:\"third step\";}');
+INSERT INTO `tblprogress` (`id_progress`, `COMPANYID`, `JOBID`, `APPLICANTID`, `detail_progress`) VALUES
+(1, 2, 0, 2019016, 'a:3:{i:0;s:9:\"assesment\";i:1;s:9:\"interview\";i:2;s:10:\"third step\";}');
 
 -- --------------------------------------------------------
 
@@ -311,13 +314,32 @@ INSERT INTO `tblusers` (`USERID`, `FULLNAME`, `USERNAME`, `PASS`, `ROLE`, `PICLO
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_curriculum_vitae`
+--
+
+CREATE TABLE `tbl_curriculum_vitae` (
+  `id_cv` int(11) NOT NULL,
+  `APPLICANTID` int(11) NOT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
+  `phone_number` bigint(20) NOT NULL,
+  `linkedin` varchar(255) NOT NULL,
+  `keahlian` text NOT NULL,
+  `pendidikan` text NOT NULL,
+  `skill_utama` varchar(255) NOT NULL,
+  `skill_secondary` varchar(255) NOT NULL,
+  `jenjang_sekolah` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_user_progress`
 --
 
 CREATE TABLE `tbl_user_progress` (
   `id_user_progress` int(11) NOT NULL,
   `id_progress` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `APPLICANTID` int(11) NOT NULL,
   `progres_step` int(11) NOT NULL,
   `appliance_status` enum('reject','pending','accepted','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -326,8 +348,8 @@ CREATE TABLE `tbl_user_progress` (
 -- Dumping data untuk tabel `tbl_user_progress`
 --
 
-INSERT INTO `tbl_user_progress` (`id_user_progress`, `id_progress`, `id_user`, `progres_step`, `appliance_status`) VALUES
-(1, 1, 18, 2, 'pending');
+INSERT INTO `tbl_user_progress` (`id_user_progress`, `id_progress`, `APPLICANTID`, `progres_step`, `appliance_status`) VALUES
+(1, 1, 2019016, 2, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -407,6 +429,12 @@ ALTER TABLE `tblusers`
   ADD PRIMARY KEY (`USERID`);
 
 --
+-- Indeks untuk tabel `tbl_curriculum_vitae`
+--
+ALTER TABLE `tbl_curriculum_vitae`
+  ADD PRIMARY KEY (`id_cv`);
+
+--
 -- Indeks untuk tabel `tbl_user_progress`
 --
 ALTER TABLE `tbl_user_progress`
@@ -475,6 +503,12 @@ ALTER TABLE `tbljobregistration`
 --
 ALTER TABLE `tblprogress`
   MODIFY `id_progress` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_curriculum_vitae`
+--
+ALTER TABLE `tbl_curriculum_vitae`
+  MODIFY `id_cv` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
