@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Mar 2022 pada 04.41
+-- Waktu pembuatan: 05 Mar 2022 pada 07.58
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -44,17 +44,18 @@ CREATE TABLE `tblapplicants` (
   `CONTACTNO` varchar(90) NOT NULL,
   `DEGREE` text NOT NULL,
   `APPLICANTPHOTO` varchar(255) NOT NULL,
-  `NATIONALID` varchar(255) NOT NULL
+  `NATIONALID` varchar(255) NOT NULL,
+  `LINKEDINLINK` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tblapplicants`
 --
 
-INSERT INTO `tblapplicants` (`APPLICANTID`, `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `SEX`, `CIVILSTATUS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `USERNAME`, `PASS`, `EMAILADDRESS`, `CONTACTNO`, `DEGREE`, `APPLICANTPHOTO`, `NATIONALID`) VALUES
-(2019016, 'asd', 'asd', 'asd', 'asd', 'Female', 'none', '1980-01-29', 'asd', 39, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '12312312', 'asd', 'photos/ktp.jpeg', ''),
-(2019018, 'asdasd', 'asd', 'asd', 'sadas', 'Female', 'Single', '1992-01-12', 'sad', 27, 'ss', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 'a@gmil.com', 'sad', 'sad', '', ''),
-(2019020, 'sad', 'sad', 'sad', 'asdsad', 'Female', 'Single', '1992-10-14', 'asdsad', 27, 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', 'a@gmil.com', '123123', 'sadsadsad', 'photos/077db70b-ab84-46c4-bbaa-a5dd6b7332a4_200x200.png', '');
+INSERT INTO `tblapplicants` (`APPLICANTID`, `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `SEX`, `CIVILSTATUS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `USERNAME`, `PASS`, `EMAILADDRESS`, `CONTACTNO`, `DEGREE`, `APPLICANTPHOTO`, `NATIONALID`, `LINKEDINLINK`) VALUES
+(2019016, 'adam', 'firdaus', 'asd', 'asd', 'Female', 'none', '1980-01-29', 'asd', 39, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '082828282', 'asd', 'photos/ktp.jpeg', '', 'https://www.linkedin.com/in/antos-wijaya-saputra-b078b3163/'),
+(2019018, 'asdasd', 'asd', 'asd', 'sadas', 'Female', 'Single', '1992-01-12', 'sad', 27, 'ss', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 'a@gmil.com', 'sad', 'sad', '', '', 'https://www.linkedin.com/in/anto-wijaya-saputra-b078b3163/'),
+(2019020, 'sad', 'sad', 'sad', 'asdsad', 'Female', 'Single', '1992-10-14', 'asdsad', 27, 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', 'a@gmil.com', '123123', 'sadsadsad', 'photos/077db70b-ab84-46c4-bbaa-a5dd6b7332a4_200x200.png', '', '');
 
 -- --------------------------------------------------------
 
@@ -320,15 +321,18 @@ INSERT INTO `tblusers` (`USERID`, `FULLNAME`, `USERNAME`, `PASS`, `ROLE`, `PICLO
 CREATE TABLE `tbl_curriculum_vitae` (
   `id_cv` int(11) NOT NULL,
   `APPLICANTID` int(11) NOT NULL,
-  `nama_lengkap` varchar(100) NOT NULL,
-  `phone_number` bigint(20) NOT NULL,
-  `linkedin` varchar(255) NOT NULL,
-  `keahlian` text NOT NULL,
-  `pendidikan` text NOT NULL,
   `skill_utama` varchar(255) NOT NULL,
-  `skill_secondary` varchar(255) NOT NULL,
+  `skill_secondary` text NOT NULL,
   `jenjang_sekolah` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tbl_curriculum_vitae`
+--
+
+INSERT INTO `tbl_curriculum_vitae` (`id_cv`, `APPLICANTID`, `skill_utama`, `skill_secondary`, `jenjang_sekolah`) VALUES
+(1, 2019016, 'Web Developer', 'a:3:{i:0;s:14:\"Design Graphic\";i:1;s:20:\" Android Development\";i:2;s:12:\" Photography\";}', 'a:2:{i:0;s:23:\"SMKIbnu Sina(2018-2019)\";i:1;s:35:\" Politeknik Negeri Batam(2022-2025)\";}'),
+(8, 2019018, 'Graphic Design', 'a:3:{i:0;s:14:\"Design Graphic\";i:1;s:21:\"  Android Development\";i:2;s:13:\"  Photography\";}', 'a:2:{i:0;s:24:\"SMK Ibnu Sina(2018-2019)\";i:1;s:36:\"  Politeknik Negeri Batam(2022-2025)\";}');
 
 -- --------------------------------------------------------
 
@@ -508,7 +512,7 @@ ALTER TABLE `tblprogress`
 -- AUTO_INCREMENT untuk tabel `tbl_curriculum_vitae`
 --
 ALTER TABLE `tbl_curriculum_vitae`
-  MODIFY `id_cv` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -184,7 +184,7 @@ body {
   border: solid 2px #64d073;
   background-color: white;
   transition: 0.4s;
-  margin-top: 27px;
+  /* margin-top: 27px; */
   font-size: 12px;
 }
 
@@ -197,7 +197,7 @@ body {
   height: 30px;
   background-color: #64d073;
   color: #fff;
-  margin-top: -27px;
+  /* margin-top: -27px; */
 }
 .done {
   background-color: #64d073;
