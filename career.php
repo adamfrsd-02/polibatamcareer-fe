@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/owl-carousel/../assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../assets/owl-carousel/../assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="assets/owl-carousel/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/owl-carousel/assets/owl.theme.default.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../assets/owl-carousel/owl.carousel.min.js"></script>
+    <script src="assets/owl-carousel/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <title>Polibatam Career</title>
 </head>
@@ -41,83 +41,34 @@
             });
         });
     </script>
-    <script>
-        const stepButtons = document.querySelectorAll('.step-button');
-        const progress = document.querySelector('#progress');
-
-        Array.from(stepButtons).forEach((button, index) => {
-            button.addEventListener('click', () => {
-                progress.setAttribute('value', index * 100 / (stepButtons.length -
-                    1)); //there are 3 buttons. 2 spaces.
-
-                stepButtons.forEach((item, secindex) => {
-                    if (index > secindex) {
-                        item.classList.add('done');
-                    }
-                    if (index < secindex) {
-                        item.classList.remove('done');
-                    }
-                })
-            })
-        })
-    </script>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img width="190" height="45" src="../assets/logo/logopolcar.png" alt="" />
+                <img width="190" height="45" src="assets/logo/logopolcar.png" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="#">Home</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="cv.html">Curriculum Vitae</a>
+                        <a class="nav-link text-semibold text-blue" href="#company">Our Partner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="career.html">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="#career">Career</a>
                     </li>
-                    <center>
-                        <div class="dropdown d-none d-sm-block d-md-none">
-                            <img style="width: 55px; height: 55px; border-radius: 50%;"
-                                src="../assets/images/_DSC6958.JPG" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            <ul class="dropdown-menu mt-3 p-3" style="right: 0 !important;
-                        left: auto !important;" aria-labelledby="navbarDropdownMenuLink">
-                                <h4><b>Adam Firdaus</b></h4>
-                                <div class="menu mt-3">
-                                    <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
-                                                class="fa fa-bookmark fa-lg me-2"></i>
-                                            Lowongan
-                                            Tersimpan</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-cogs fa-lg me-2"></i>
-                                            Pengaturan
-                                            Akun</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#"><i
-                                                class="fa fa-question-circle fa-lg me-2"></i>
-                                            Butuh
-                                            Bantuan
-                                            ?</a>
-                                    </li>
-                                    <hr>
-                                    <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-lg me-2"></i>
-                                            Logout</a>
-                                    </li>
-                                </div>
-
-                            </ul>
-                        </div>
-                    </center>
+                    <li class="nav-item">
+                        <a class="nav-link text-semibold text-blue" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-semibold text-blue" href="#faq">FAQ</a>
+                    </li>
                     <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -148,34 +99,11 @@
               >
             </li>-->
                 </ul>
-                <div class="d-flex ms-auto">
-                    <div class="dropdown d-sm-none d-md-block ">
-                        <img style="width: 55px; height: 55px; border-radius: 50%;" src="../assets/images/_DSC6958.JPG"
-                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <ul class="dropdown-menu mt-3 p-3" style="right: 0 !important;
-                        left: auto !important;" aria-labelledby="navbarDropdownMenuLink">
-                            <h4><b>Adam Firdaus</b></h4>
-                            <div class="menu mt-3">
-                                <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
-                                            class="fa fa-bookmark fa-lg me-2"></i>
-                                        Lowongan
-                                        Tersimpan</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-cogs fa-lg me-2"></i> Pengaturan
-                                        Akun</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-question-circle fa-lg me-2"></i>
-                                        Butuh
-                                        Bantuan
-                                        ?</a>
-                                </li>
-                                <hr>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out fa-lg me-2"></i>
-                                        Logout</a>
-                                </li>
-                            </div>
-
-                        </ul>
-                    </div>
+                <div class="d-flex">
+                    <button class="btn btn-outline-blue shadow-sm px-5" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Login
+                    </button>
                 </div>
             </div>
         </div>
@@ -185,7 +113,7 @@
     <!-- modal login -->
 
     <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
@@ -194,6 +122,7 @@
                         <p class="text-blue" style="margin-top: -6px">
                             Silahkan menggunakan identitas yang terdaftar
                         </p>
+                        <!-- form -->
                         <form>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">NIK/NIM</label>
@@ -226,7 +155,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- end modal login -->
 
     <!-- <img
@@ -235,102 +164,149 @@
       alt=""
       loading="lazy"
     /> -->
-    <!-- progress tracker -->
-    <div class="container py-3">
-        <div class="header">
-            <h2 class="header-title w-50">
-                Silahkan isi data dengan informasi yang valid
-            </h2>
-        </div>
-        <hr>
-        <div class="heading" style="display: flex; flex-direction: row; justify-content: space-between;">
-            <p style="font-size: 1.5vh">Kamu sedang berada di halaman : Curriculum Vitae / <b>CV Maker</b></p>
-            <!-- <p style="font-size: 1.5vh;">Ada <b>2 Lamaran</b> yang kamu ajukan</p> -->
-        </div>
-        <!-- body cv -->
-        <!-- profile section -->
-        <center>
-            <div class="header-profile row mt-4">
-                <div class="profile-photo col-md-6">
-                    <img style="width: 180px; height: 180px; border-radius: 50%;" src="../assets/images/_DSC6958.JPG"
-                        alt="foto profile">
-                </div>
-                <div class="profile-info col-md-6 text-start">
-                    <p class="header-title">Adam Firdaus</p>
-                    <h3 class="text-muted" style="margin-top: -10px;">4311901038</h3>
-                    <h3 class="text-muted">Teknik Informatika</h3>
-
-                </div>
+    <!-- career section -->
+    <div class="container">
+        <div class="py-5">
+            <div class="header">
+                <h2 class="header-title w-50">
+                    Mungkin beberapa lowongan kerja ini cocok untukmu
+                </h2>
             </div>
-        </center>
-        <div class="body-profile mt-5">
-            <div class="card p-5">
-                <form action="" method="post">
-                    <label for="basic-url" class="form-label">Profil & Kontak</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="masukkan nama lengkap kamu"
-                            aria-label="Username" aria-describedby="basic-addon1">
+            <!-- search section -->
+            <hr>
+            <div class="form-search">
+                <form action="career.php?keyword=" method="get">
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <label for="" class="mb-2">Nama Perusahaan</label>
+                            <input type="text" name="keyword" class="form-control" placeholder="masukkan nama perusahaan">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="mb-2">Jenis Program</label>
+                            <select name="" class="form-select" id="">
+                                <option value="">pilih jenis program</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="mb-2">Tipe Pekerjaan</label>
+                            <select name="" class="form-select" id="">
+                                <option value="">pilih tipe pekerjaan</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="" class="mb-2">Urut Berdasarkan</label>
+                            <select name="" class="form-select" id="">
+                                <option value="">urut berdasarkan jangka waktu</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
-                        <input type="text" class="form-control" placeholder="masukkan no. WA / handphone aktif"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-linkedin"></i></span>
-                        <input type="text" class="form-control" placeholder="masukkan link linkedin"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <hr>
-                    <label for="basic-url" class="form-label">Skill & Pendidikan</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-cog"></i></span>
-                        <input type="text" class="form-control"
-                            placeholder="masukkan satu keahlian yang kamu kuasai, contoh:(Graphic Design)"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-cogs"></i></span>
-                        <input type="text" class="form-control"
-                            placeholder="pisahkan dengan koma contoh: (Web Development,Android Development,Photography)"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-building-o"></i></span>
-                        <input type="text" class="form-control"
-                            placeholder="pisahkan dengan koma contoh: (SMK Al-Azhar(2019-2020),Politeknik Negeri Batam(2021-2023))"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <hr>
-                    <label for="basic-url" class="form-label">Pengalaman & Sertifikasi</label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Skill Utama</span>
-                        <input type="text" class="form-control"
-                            placeholder="masukkan satu keahlian yang kamu kuasai, contoh:(Graphic Design)"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Skill Lainnya</span>
-                        <input type="text" class="form-control"
-                            placeholder="pisahkan dengan koma contoh: (Web Development,Android Development,Photography)"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Jenjang Sekolah</span>
-                        <input type="text" class="form-control"
-                            placeholder="pisahkan dengan koma contoh: (SMK Al-Azhar(2019-2020),Politeknik Negeri Batam(2021-2023))"
-                            aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-
-                    <button class="mx-auto btn bg-myorange text-white w-25 mt-2">Submit</button>
+                    <button class="px-5 py-3 rounded bg-myblue text-white"
+                        style="border-radius: 10px !important; border-style: none;">Cari
+                        Pekerjaan</button>
                 </form>
             </div>
+            <hr>
+            <!-- end search section -->
+            <!-- search result section -->
+                <div class="row">
+                <div class="header-subtitle py-3">
+                    <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang
+                        sesuai</span>
+                </div>
+                <div class="owl-carousel mt-1 px-2">
+                    <!-- items -->
+                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                        <div class="card-heading">
+                            <div class="career-overview">
+                                <div class="d-flex justify-content-between">
+                                    <div class="job-label py-2 px-4">UX Design</div>
+                                    <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="logo p-3">
+                                <img src="assets/logo/perusahaan.png" alt="">
+                            </div>
+                            <div class="career-jobdesc py-2">
+                                <p class="job-title">
+                                    Web Designer
+                                </p>
+                                <p class="job-overview">
+                                    Kami mencari alumni yang siap untuk terjun langsung dalam proyek nyata di industri .
+                                    . .
+                                </p>
+                            </div>
+                            <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                style="border-radius: 10px !important; border-style: none;">Apply</button>
+                        </div>
+                    </div>
+                    <!-- itemss -->
+
+                </div>
+            </div>
+            <!-- end search result section -->
+            <!-- new job section -->
+            <div class="latest-job mt-5">
+                <h2 class="header-title w-50 mb-4" style="color: #183a64;">
+                    Lowongan Kerja Terbaru
+                </h2>
+                <div class="owl-carousel mt-1 px-2 h-auto">
+                    <!-- items -->
+                    <?php
+                        include 'config/conn.php';
+
+                        $query = "SELECT * FROM tbljob
+                        INNER JOIN tblcompany ON tbljob.COMPANYID=tblcompany.COMPANYID ORDER BY tbljob.DATEPOSTED DESC";
+                        $res = $koneksi->query($query);
+
+                        // echo '<pre>';
+                        // print_r(
+                        //     $res
+                        // );
+                        
+                        // echo '</pre>';
+                        foreach($res as $row) {
+                    ?>
+                    <div class="card p-4 px-4 h-auto" style="width: auto; border-radius: 20px">
+                        <div class="card-heading">
+                            <div class="career-overview">
+                                <div class="d-flex justify-content-between">
+                                    <div class="job-label py-2 px-4"><?= $row['CATEGORY']?></div>
+                                    <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body h-100">
+                            <div class="logo p-3">
+                                <img src="assets/logo/<?= $row['COMPANYLOGO']?>" alt="">
+                            </div>
+                            <div class="career-jobdesc py-2">
+                                <h4>
+                                    <?= $row['COMPANYNAME']?>
+                                </h4>
+                                <p class="job-title">
+                                    <?= $row['OCCUPATIONTITLE']?>
+                                </p>
+                                <p class="job-overview">
+                                   <?= $row['JOBDESCRIPTION']?>
+                                </p>
+                            </div>
+                            <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                style="border-radius: 10px !important; border-style: none;">Apply</button>
+                        </div>
+                    </div>
+                    <?php
+                        }
+                    ?>
+                    <!-- itemss -->
+
+                </div>
+            </div>
+            <!-- end new job section -->
         </div>
-        <!-- end profile section -->
-        <!-- end body cv -->
     </div>
-    <!-- end progress tracker -->
+    <!-- end career section -->
 
 
     <!-- contact us -->
@@ -357,15 +333,15 @@
                             </div>
                             <div class="body mt-5">
                                 <div class="phone">
-                                    <img src="../assets/icons/phone.png" width="30" height="30" alt="" />
+                                    <img src="assets/icons/phone.png" width="30" height="30" alt="" />
                                     <span class="text-white ms-3">0891-2718-281</span>
                                 </div>
                                 <div class="messages mt-4">
-                                    <img src="../assets/icons/message.png" width="30" height="30" alt="" />
+                                    <img src="assets/icons/message.png" width="30" height="30" alt="" />
                                     <span class="text-white ms-3">admin@polibatam.ac.id</span>
                                 </div>
                                 <div class="place mt-4 d-flex">
-                                    <img src="../assets/icons/bookmark.png" width="30" height="35" alt="" />
+                                    <img src="assets/icons/bookmark.png" width="30" height="35" alt="" />
                                     <span class="text-white ms-3 text-start">Batam Centre, Jl. Ahmad Yani, Tlk. Tering,
                                         Kec.
                                         Batam Kota,
@@ -374,9 +350,9 @@
                             </div>
                             <div class="footer mt-5">
                                 <div class="d-flex justify-content-between">
-                                    <img src="../assets/icons/facebook.png" alt="">
-                                    <img src="../assets/icons/Twitter.png" alt="">
-                                    <img src="../assets/icons/Instagram.png" alt="">
+                                    <img src="assets/icons/facebook.png" alt="">
+                                    <img src="assets/icons/Twitter.png" alt="">
+                                    <img src="assets/icons/Instagram.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -489,7 +465,7 @@
     <div class="container">
         <div class="row p-5 pb-5 pt-5">
             <div class="col-md-3">
-                <img src="../assets/logo/logopolcar.png" width="190" height="45" alt="">
+                <img src="assets/logo/logopolcar.png" width="190" height="45" alt="">
             </div>
             <div class="col-md-3">
                 <p class="text-blue text-bold">
@@ -540,9 +516,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="social-media mt-3 d-flex justify-content-between">
-                        <a href="#"><img src="../assets/icons/facebook.png" alt=""></a>
-                        <a href="#"><img src="../assets/icons/Twitter.png" alt=""></a>
-                        <a href="#"><img src="../assets/icons/Instagram.png" alt=""></a>
+                        <a href="#"><img src="assets/icons/facebook.png" alt=""></a>
+                        <a href="#"><img src="assets/icons/Twitter.png" alt=""></a>
+                        <a href="#"><img src="assets/icons/Instagram.png" alt=""></a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,10 @@
 <?php
-    require_once('../include/database.php');
+    require_once("../include/initialize.php");
+    
+    if (!isset($_SESSION['APPLICANTID'])) {
+        # code...
+        redirect(web_root.'index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,10 +97,10 @@
                         <a class="nav-link text-semibold text-blue" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="cv.html">Curriculum Vitae</a>
+                        <a class="nav-link text-semibold text-blue" href="cv.php">Curriculum Vitae</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="career.html">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="career.php">Career</a>
                     </li>
                     <center>
                         <div class="dropdown d-none d-sm-block d-md-none">
@@ -259,6 +264,16 @@
             <p style="font-size: 1.5vh;">Ada <b>2 Lamaran</b> yang kamu ajukan</p>
         </div>
         <div class="body-tracker">
+            <?php
+                
+                $applicantid = $_SESSION['APPLICANTID'];
+                $sql = "SELECT id_progress,detail_progress FROM tblprogress where APPLICANTID = '$applicantid'  ";
+                $mydb->setQuery($sql);
+                $cur = $mydb->loadResultList();
+                if ($cur) :
+                $i=1;
+                $tahap = "";
+            ?>
             <!-- Item -->
             <div class="card mb-3">
                 <div class="row">
@@ -279,17 +294,6 @@
                             </div>
 
                         </div>
-                        <?php
-                $sql = "SELECT id_progress,detail_progress FROM tblprogress ";
-                $mydb->setQuery($sql);
-                $cur = $mydb->loadResultList();
-                //print_r($query);
-                $array = array("assesment", "interview", "third step");
-                $serialized_array = serialize($array); 
-                // var_dump($serialized_array);
-                $i=1;
-                $tahap = "";
-                        ?>
 
                         <div class="card px-3">
                             <div class="steps">
@@ -297,7 +301,7 @@
                                 <?php
                                 foreach($cur as $item) :
                                     // echo "<pre>".print_r(,1)."</pre>";
-                                    $sql2 = "SELECT * FROM tbl_user_progress where id_progress = '$item->id_progress' ";
+                                    $sql2 = "SELECT * FROM tbl_user_progress where id_progress = '$item->id_progress' && APPLICANTID = '$applicantid' ";
                                     $mydb->setQuery($sql2);
                                     $cur2 = $mydb->loadResultList();
                                     $progress = 0;
@@ -332,106 +336,6 @@
                                 endforeach;
                                 ?>
 
-
-                                <!-- <div class="step-item">
-                                    <button class="step-button text-center" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        1
-                                    </button>
-                                    <div class="step-title">
-                                        First Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        2
-                                    </button>
-                                    <div class="step-title">
-                                        Second Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        3
-                                    </button>
-                                    <div class="step-title">
-                                        Third Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        4
-                                    </button>
-                                    <div class="step-title">
-                                        Fourth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        5
-                                    </button>
-                                    <div class="step-title">
-                                        Fifth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
-                                        aria-controls="collapseSix">
-                                        6
-                                    </button>
-                                    <div class="step-title">
-                                        Sixth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false"
-                                        aria-controls="collapseSeven">
-                                        7
-                                    </button>
-                                    <div class="step-title">
-                                        Seventh Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false"
-                                        aria-controls="collapseEight">
-                                        8
-                                    </button>
-                                    <div class="step-title">
-                                        Eight Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false"
-                                        aria-controls="collapseNine">
-                                        9
-                                    </button>
-                                    <div class="step-title">
-                                        Nineth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false"
-                                        aria-controls="collapseTen">
-                                        10
-                                    </button>
-                                    <div class="step-title">
-                                        Tenth Step
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="ps-3"
                                 style="margin-top: -10px; display: flex; flex-direction: row; align-items: baseline;">
@@ -445,140 +349,10 @@
                     </div>
                 </div>
             </div>
-            <!-- End Item -->
-            <!-- Item -->
-            <!-- <div class="card">
-                <div class="row">
-                    <div class="col-md-4 my-auto px-5">
-                        <img src="assets/logo/perusahaan.png" alt="">
-                    </div>
-                    <div class="step col-md-8 d-none d-md-block py-5 pe-5">
-                        <div class="company-profile">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p class="header-title">Web Designer</p>
-                                    <p class="header-subtitle" style="margin-top: -12px;">Lapmodo Batam</p>
-                                </div>
-                                <div class="col-md-6 ms-auto">
-                                    <button class="btn btn-outline-blue px-5 float-end">Detail</button>
-                                    <p class="float-end mt-3">Tanggal Apply : 5 Februari 2022</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card">
-                            <div class="steps">
-                                <progress id="progress" value=0 max=100></progress>
-                                <div class="step-item">
-                                    <button class="step-button text-center" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        1
-                                    </button>
-                                    <div class="step-title">
-                                        First Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        2
-                                    </button>
-                                    <div class="step-title">
-                                        Second Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        3
-                                    </button>
-                                    <div class="step-title">
-                                        Third Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        4
-                                    </button>
-                                    <div class="step-title">
-                                        Fourth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        5
-                                    </button>
-                                    <div class="step-title">
-                                        Fifth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
-                                        aria-controls="collapseSix">
-                                        6
-                                    </button>
-                                    <div class="step-title">
-                                        Sixth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false"
-                                        aria-controls="collapseSeven">
-                                        7
-                                    </button>
-                                    <div class="step-title">
-                                        Seventh Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false"
-                                        aria-controls="collapseEight">
-                                        8
-                                    </button>
-                                    <div class="step-title">
-                                        Eight Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false"
-                                        aria-controls="collapseNine">
-                                        9
-                                    </button>
-                                    <div class="step-title">
-                                        Nineth Step
-                                    </div>
-                                </div>
-                                <div class="step-item">
-                                    <button class="step-button text-center collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false"
-                                        aria-controls="collapseTen">
-                                        10
-                                    </button>
-                                    <div class="step-title">
-                                        Tenth Step
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ps-3"
-                                style="margin-top: -10px; display: flex; flex-direction: row; align-items: baseline;">
-                                <p class="header-subtitle">Sedang Tahap </p>
-                                <p class="ms-2"><b>Asesemen</b></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            <?php
+                            
+                        endif;
+                        ?>
             <!-- End Item -->
         </div>
     </div>

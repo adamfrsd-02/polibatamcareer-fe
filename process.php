@@ -226,7 +226,7 @@ function doLogin(){
        // $sql="INSERT INTO `tbllogs` (`USERID`,USERNAME, `LOGDATETIME`, `LOGROLE`, `LOGMODE`) 
        //    VALUES (".$_SESSION['USERID'].",'".$_SESSION['FULLNAME']."','".date('Y-m-d H:i:s')."','".$_SESSION['UROLE']."','Logged in')";
        //    mysql_query($sql) or die(mysql_error()); 
-         redirect(web_root."applicant/");
+         redirect(web_root."applicant-page/");
      
     }else{
     	 echo "Account does not exist! Please contact Administrator."; 
