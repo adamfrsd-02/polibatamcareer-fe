@@ -263,8 +263,7 @@ global $mydb;
 		$sql="UPDATE `tbljobregistration` SET `REMARKS`='{$remarks}',PENDINGAPPLICATION=0,HVIEW=0,DATETIMEAPPROVED=NOW() WHERE `REGISTRATIONID`='{$id}'";
 		$mydb->setQuery($sql);
 		$cur = $mydb->executeQuery();
-
-		if ($cur) {
+		if (!$cur) {
 			# code...
 			$sql = "SELECT * FROM `tblfeedback` WHERE `REGISTRATIONID`='{$id}'";
 			$mydb->setQuery($sql);
@@ -284,7 +283,7 @@ global $mydb;
 			message("Applicant is calling for an interview.", "success");
 			redirect("index.php?view=view&id=".$id); 
 		}else{
-			message("cannot be sve.", "error");
+			message("cannot be save.", "error");
 			redirect("index.php?view=view&id=".$id); 
 		}
 
