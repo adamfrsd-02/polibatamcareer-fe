@@ -160,9 +160,10 @@
             <div class="owl-carousel mt-1 px-2">
                 <!-- items -->
                 <?php
-                $query = mysqli_query($koneksi, "SELECT OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE, COMPANYLOGO FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
+                $query = mysqli_query($koneksi, "SELECT JOBID, OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE, COMPANYLOGO FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
                 //print_r($query);
                 foreach($query as $item) :
+                    // echo "<pre>".print_r($item,1)."</pre>";
             ?>
                 <div class="card py-2 h-100" style="width: auto; height:100%; border-radius: 20px">
                     <div class="card-body h-100">
@@ -188,6 +189,7 @@
                                     per bulan
                                 </p>
                             </div>
+                            <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary">Apply</a>
                         </div>
                     </div>
                 </div>

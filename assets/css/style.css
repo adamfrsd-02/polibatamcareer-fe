@@ -23,8 +23,8 @@ body {
 
 .btn-primary {
   border-radius: 10px;
-  width: 240px;
-  height: 70px;
+  /* width: 240px;
+  height: 70px; */
   background-color: #183a64;
   border-color: none !important;
   padding-left: 40px;
@@ -34,8 +34,8 @@ body {
 
 .btn-primary {
   border-radius: 10px;
-  width: 240px;
-  height: 70px;
+  /* width: 240px;
+  height: 70px; */
   background-color: #183a64;
   border-color: none !important;
   padding-left: 40px;
