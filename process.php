@@ -27,8 +27,6 @@ function doSubmitApplication() {
 
 		@$picture = UploadImage();
 		@$location = "photos/". $picture ;
-
-
 		if ($picture=="") {
 			# code...
 			redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
@@ -39,8 +37,6 @@ function doSubmitApplication() {
 				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
 				VALUES ('". date('Y').$fileid->AUTO."','{$_SESSION['APPLICANTID']}','Resume','{$location}','{$jobid}')";
 				$mydb->setQuery($sql); 
-				 
-
 				doUpdate($jobid,$fileid->AUTO);
 
 
@@ -242,9 +238,11 @@ function UploadImage($jobid=0){
 	
 	if($imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg"
 || $imageFileType != "gif" ) {
-		 if (move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file)) {
-			return  date("dmYhis") . basename($_FILES["picture"]["name"]);
-		}else{
+	$move = move_uploaded_file($_FILES["picture"]["tmp_name"], $target_file);
+	if ($move) {
+		return  date("dmYhis") . basename($_FILES["picture"]["name"]);
+	}else{
+			// echo "<pre>".print_r($_FILES["file"]["error"],1)."</pre>";
 			message("Error Uploading File","error");
 			// redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
 			// exit;

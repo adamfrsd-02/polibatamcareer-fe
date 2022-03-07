@@ -44,7 +44,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../">
                 <img width="190" height="45" src="../assets/logo/logopolcar.png" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
