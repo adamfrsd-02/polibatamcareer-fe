@@ -1,3 +1,9 @@
+<?php
+      require_once("../include/initialize.php");
+      $applicant = new Applicants();
+      $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
+    //   echo "<pre>".print_r($appl,1)."</pre>";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../assets/owl-carousel/assets/owl.carousel.min.css" />
     <link rel="stylesheet" href="../assets/owl-carousel/assets/owl.theme.default.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.js"></script>
+    <script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.easing.1.3.js"></script>
+    <script src="<?php echo web_root; ?>plugins/home-plugins/js/bootstrap.min.js"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <script src="../assets/owl-carousel/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -69,26 +79,26 @@
                     <center>
                         <div class="dropdown d-none d-sm-block d-md-none">
                             <img style="width: 55px; height: 55px; border-radius: 50%;"
-                                src="../assets/images/_DSC6958.JPG" id="navbarDropdownMenuLink" role="button"
+                                src="<?= web_root; ?>applicant-page/<?= $appl->APPLICANTPHOTO; ?>" id="navbarDropdownMenuLink" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             <ul class="dropdown-menu mt-3 p-3" style="right: 0 !important;
                         left: auto !important;" aria-labelledby="navbarDropdownMenuLink">
-                                <h4><b>Adam Firdaus</b></h4>
+                                <h4><b><?= $appl->FNAME.$appl->LNAME ?></b></h4>
                                 <div class="menu mt-3">
-                                    <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
+                                    <!-- <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
                                                 class="fa fa-bookmark fa-lg me-2"></i>
                                             Lowongan
-                                            Tersimpan</a></li>
+                                            Tersimpan</a></li> -->
                                     <li><a class="dropdown-item" href="#"><i class="fa fa-cogs fa-lg me-2"></i>
                                             Pengaturan
                                             Akun</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
+                                    <!-- <li><a class="dropdown-item" href="#"><i
                                                 class="fa fa-question-circle fa-lg me-2"></i>
                                             Butuh
                                             Bantuan
                                             ?</a>
-                                    </li>
+                                    </li> -->
                                     <hr>
                                     <li><a class="dropdown-item" href="<?php echo web_root; ?>logout.php"><i class="fa fa-sign-out fa-lg me-2"></i>
                                             Logout</a>
@@ -130,24 +140,24 @@
                 </ul>
                 <div class="d-flex ms-auto">
                     <div class="dropdown d-sm-none d-md-block ">
-                        <img style="width: 55px; height: 55px; border-radius: 50%;" src="../assets/images/_DSC6958.JPG"
+                        <img style="width: 55px; height: 55px; border-radius: 50%;" src="<?= web_root; ?>applicant-page/<?= $appl->APPLICANTPHOTO; ?>"
                             id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <ul class="dropdown-menu mt-3 p-3" style="right: 0 !important;
                         left: auto !important;" aria-labelledby="navbarDropdownMenuLink">
-                            <h4><b>Adam Firdaus</b></h4>
+                            <h4><b><?= $appl->FNAME.$appl->LNAME ?></b></h4>
                             <div class="menu mt-3">
-                                <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
+                                <!-- <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
                                             class="fa fa-bookmark fa-lg me-2"></i>
                                         Lowongan
-                                        Tersimpan</a></li>
+                                        Tersimpan</a></li> -->
                                 <li><a class="dropdown-item" href="<?php echo web_root; ?>applicant-page/index.php?view=accounts"><i class="fa fa-cogs fa-lg me-2"></i> Pengaturan
                                         Akun</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-question-circle fa-lg me-2"></i>
+                                <!-- <li><a class="dropdown-item" href="#"><i class="fa fa-question-circle fa-lg me-2"></i>
                                         Butuh
                                         Bantuan
                                         ?</a>
-                                </li>
+                                </li> -->
                                 <hr>
                                 <li><a class="dropdown-item" href="<?php echo web_root; ?>logout.php"><i class="fa fa-sign-out fa-lg me-2"></i>
                                         Logout</a>
@@ -209,6 +219,8 @@
         </div>
     </div>
     <!-- end modal login -->
+
+  
 
     <!-- <img
       src="https://images.unsplash.com/photo-1530435460869-d13625c69bbf?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8MTB8fHdlYnNpdGV8ZW58MHwwfHx8MTYyMTQ0NjkyNg&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=768"

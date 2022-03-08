@@ -103,7 +103,7 @@ switch ($action) {
 			$errofile = $_FILES['photo']['error'];
 			$type = $_FILES['photo']['type'];
 			$temp = $_FILES['photo']['tmp_name'];
-			$myfile =$_FILES['photo']['name'];
+			$myfile = date("dmYhis") . $_FILES['photo']['name'];
 		 	$location="photos/".$myfile;
 
 

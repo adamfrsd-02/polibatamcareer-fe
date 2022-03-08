@@ -43,7 +43,7 @@
         <div class="col-sm-3"><!--left col-->
            <div class="panel panel-default">            
             <div class="panel-body"> 
-              <div  id="image-container">
+              <div id="image-container">
                 <img title="profile image"  data-target="#myModal"  data-toggle="modal"  src="">  
               </div>
              </div>
