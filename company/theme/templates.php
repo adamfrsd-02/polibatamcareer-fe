@@ -174,6 +174,12 @@
             </span>
           </a>
         </li> 
+        
+        <li class="<?php echo (currentpage() == 'assesment') ? "active" : false;?>" >
+          <a href="<?php echo web_root ;?>company/assesment/">
+            <i class="fa fa-book"></i> <span>Assesment List</span> 
+          </a>
+        </li>
        <!--  <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>

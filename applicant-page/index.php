@@ -33,6 +33,11 @@ switch ($view) {
         $_SESSION['career'] = 'active';
         $content = 'career.php';
         break;
+    case 'assesment' :
+        $title = "Assesment";
+        $_SESSION['assesment'] = 'active';
+        $content = 'assesment.php';
+        break;
 	default : 
 	    $title="Profile";	
         $_SESSION['appliedjobs']	='active' ;

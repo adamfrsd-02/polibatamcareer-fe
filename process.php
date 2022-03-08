@@ -16,6 +16,7 @@ switch ($action) {
 	}
 
 function doSubmitApplication() { 
+	require_once('config/conn.php');
 	global $mydb;   
 		$jobid  = $_GET['JOBID'];
 		
@@ -33,14 +34,36 @@ function doSubmitApplication() {
 		}else{ 
 			
 			if (isset($_SESSION['APPLICANTID'])) {
-
+				$job = New Jobs();
+				$joblist = $job->single_job($jobid);
+				$queryass = "SELECT ASSESMENTLISTID FROM tblassesmentlist WHERE JOBID = '$jobid'";
+				$mydb->setQuery($queryass);
+				$resass = $mydb->loadResultList();
+				$assid = array();
+				foreach ($resass as $assval ) {
+					array_push($assid,$assval->ASSESMENTLISTID);
+				}
+				$assid = implode(",",$assid);
+				$location = str_replace(' ','_', $location);
+				$location = str_replace("'", "", $location);
+				$location = str_replace('"', "", $location);
 				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
 				VALUES ('". date('Y').$fileid->AUTO."','{$_SESSION['APPLICANTID']}','Resume','{$location}','{$jobid}')";
+				// echo "<pre>".print_r(,1)."</pre>";
 				$mydb->setQuery($sql); 
 				doUpdate($jobid,$fileid->AUTO);
-
-
-				
+				$sql2 = "INSERT INTO tblprogress (COMPANYID,JOBID,APPLICANTID,detail_progress,ASSESMENTID) 
+				VALUES('$joblist->COMPANYID','$jobid','{$_SESSION['APPLICANTID']}','$joblist->PROGRESS_DETAIL','$assid')";
+				// $mydb->setQuery($sql2);
+				$insertprogress = $koneksi->query($sql2);
+				if($insertprogress){
+					$id_progress = $koneksi->insert_id;
+					$sql3 = "INSERT INTO tbl_user_progress (id_progress,APPLICANTID,progres_step,appliance_status)
+					values('$id_progress','{$_SESSION['APPLICANTID']}',1,'pending')";
+					$mydb->setQuery($sql3);
+						
+					
+				}
 			}else{
 				 
 				$sql = "INSERT INTO `tblattachmentfile` (FILEID,`USERATTACHMENTID`, `FILE_NAME`, `FILE_LOCATION`, `JOBID`) 
@@ -231,11 +254,13 @@ function doLogin(){
 }
  
 function UploadImage($jobid=0){
-	$target_dir = "applicant/photos/";
+	$target_dir = "applicant-page/photos/";
 	$target_file = $target_dir . date("dmYhis") . basename($_FILES["picture"]["name"]);
 	$uploadOk = 1;
+	$target_file = str_replace(" ", "_", $target_file);
+	$target_file = str_replace("'", "", $target_file);
+	$target_file = str_replace('"', "", $target_file);
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	
 	
 	if($imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg"
 || $imageFileType != "gif" ) {

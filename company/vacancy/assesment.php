@@ -13,7 +13,9 @@
         $cur = $mydb->loadSingleResult();
     }
 
+    if( !isset($_GET['JOBID'])) :
 ?>
+
         <form id="asstitle">
             <div class="form-group">
                 <div class="col-md-8">
@@ -28,6 +30,12 @@
               </div>
               <button  class="btn btn-primary" name="save"><span class="glyphicon glyphicon-save"></span> Save</button>
         </form>
+        <?php
+            else :
+        ?>
+        <?php
+            endif;
+        ?>
 <script>
     $(document).ready(function(){
         $('#asstitle').submit(function(e){

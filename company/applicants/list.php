@@ -22,6 +22,7 @@
 									<th>Company</th>
 									<th>Applied Date</th> 
 									<th>Remarks</th>
+									<th>Application Progress</th>
 									<th width="14%" >Action</th> 
 							  	</tr>	
 							  </thead> 
@@ -42,7 +43,12 @@
 							  		echo '<td>' . $result->OCCUPATIONTITLE.'</a></td>';
 							  		echo '<td>' . $result->COMPANYNAME.'</a></td>'; 
 							  		echo '<td>'. $result->REGISTRATIONDATE.'</td>';
-							  		echo '<td>'. $result->REMARKS.'</td>';  
+							  		echo '<td>'. $result->REMARKS.'</td>';
+									  $mydb->setQuery("SELECT id_progress FROM tblprogress WHERE APPLICANTID= $result->APPLICANTID AND COMPANYID = $result->COMPANYID AND JOBID = $result->JOBID ");
+									  $progress = $mydb->loadSingleResult();
+									  $mydb->setQuery("SELECT progres_step FROM tbl_user_progress WHERE APPLICANTID = $result->APPLICANTID AND id_progress = $progress->id_progress");
+									  $userprogress = $mydb->loadSingleResult();
+									echo '<td>'.$userprogress->progres_step - 1 ."/".count(unserialize($result->PROGRESS_DETAIL)).'</td>';
 					  				echo '<td align="center" >    
 					  		             <a title="View" href="index.php?view=view&id='.$result->REGISTRATIONID.'"  class="btn btn-info btn-xs  ">
 					  		             <span class="fa fa-info fw-fa"></span> View</a> 
