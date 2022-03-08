@@ -165,13 +165,13 @@
                 foreach($query as $item) :
                     // echo "<pre>".print_r($item,1)."</pre>";
             ?>
-                <div class="card py-2 h-100" style="width: auto; height:100%; border-radius: 20px">
-                    <div class="card-body h-100">
-                        <div class="row mt-0 h-100">
-                            <div class="col-md-3 h-100">
+                <div class="card py-2" style="width: auto; border-radius: 20px">
+                    <div class="card-body">
+                        <div class="row mt-0">
+                            <div class="col-md-3">
                                 <img src="assets/upload/company_logo/<?= $item['COMPANYLOGO']?>" class="align-middle" />
                             </div>
-                            <div class="col-md-6 h-100">
+                            <div class="col-md-6">
                                 <h5 class="card-title text-blue">
                                     <b><?php echo $item['OCCUPATIONTITLE']?></b>
                                 </h5>
@@ -183,13 +183,15 @@
                                     <!-- <div class="label label-blue">UX Design</div> -->
                                 </div>
                             </div>
-                            <div class="col-md-3 h-100>
+                            <div class="col-md-3">
                                 <p class="card-title text-bold text-blue">Rp. <?= number_format($item['SALARIES'],00,',','.')?>,-</p>
                                 <p class="card-text text-blue" style="margin-top: -10px">
                                     per bulan
                                 </p>
                             </div>
-                            <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary">Apply</a>
+                            <div class="footer-job mt-3 text-center">
+                                <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary w-100 py-3 px-2">Apply</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -198,7 +200,7 @@
             <div class="container">
                 <center>
                     <div class="footer">
-                        <button class="btn btn-secondary text-center mt-5" onclick="location.href='career.html'">Lowongan
+                        <button class="btn btn-secondary text-center mt-5" onclick="location.href='career.php'">Lowongan
                             Lainnya</button>
                     </div>
                 </center>
