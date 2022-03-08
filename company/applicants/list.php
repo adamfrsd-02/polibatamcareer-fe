@@ -36,7 +36,9 @@
 									foreach ($cur as $result) { 
 							  		echo '<tr>';
 							  		// echo '<td width="5%" align="center"></td>';
-							  		echo '<td>'. $result->APPLICANT.'</td>';
+									$mydb->setQuery("SELECT * FROM tblapplicants where APPLICANTID = $result->APPLICANTID");
+									$appl = $mydb->loadSingleResult();
+									echo '<td>'. $appl->FNAME." ".$appl->LNAME.'</td>';
 							  		echo '<td>' . $result->OCCUPATIONTITLE.'</a></td>';
 							  		echo '<td>' . $result->COMPANYNAME.'</a></td>'; 
 							  		echo '<td>'. $result->REGISTRATIONDATE.'</td>';

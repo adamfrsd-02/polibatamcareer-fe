@@ -160,20 +160,20 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="PASS" />
                             </div>
-                            <div class="mb-3 form-check">
+                            <!-- <div class="mb-3 form-check">
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> />
                                 <label class="form-check-label" for="remember">Ingat Saya
                                 </label>
-                            </div>
+                            </div> -->
                             <button type="submit" class="btn btn-primary w-100">
                                 Submit
                             </button>
                         </form>
                         <div class="another-action text-center mt-4 text-blue">
                             <p>
-                                Belum Punya Akun ? <a href="/register">Daftar Disini</a>
+                                Belum Punya Akun ? <a href="#">Daftar Disini</a>
                             </p>
-                            <a href="#" class="text-bold text-blue" style="text-decoration: none">Lupa Password ?</a>
+                            <!-- <a href="#" class="text-bold text-blue" style="text-decoration: none">Lupa Password ?</a> -->
                         </div>
                     </div>
                 </div>

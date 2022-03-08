@@ -1,4 +1,3 @@
-
     <!-- <img
       src="https://images.unsplash.com/photo-1530435460869-d13625c69bbf?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8MTB8fHdlYnNpdGV8ZW58MHwwfHx8MTYyMTQ0NjkyNg&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=768"
       class="d-block mx-lg-auto img-fluid"
@@ -190,7 +189,18 @@
                                 </p>
                             </div>
                             <div class="footer-job mt-3 text-center">
+                                <?php
+                                    if(!isset($_SESSION['APPLICANTID'])){
+                                ?>
+                                <button class="btn btn-primary w-100 py-3 px-2"" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    APPLY
+                                </button>
+                                <?php
+                                    }else{ 
+                                ?>
                                 <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary w-100 py-3 px-2">Apply</a>
+
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

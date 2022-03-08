@@ -106,16 +106,16 @@ if(isset($_POST['btnLogin'])){
     if ($res==true) { 
        message("You logon as ".$_SESSION['ROLE'].".","success");
       // if ($_SESSION['ROLE']=='Administrator' || $_SESSION['ROLE']=='Cashier'){
-
+        // echo "<pre>".print_r($_SESSION,1)."</pre>";
         $_SESSION['COMPANY_USERID'] = $_SESSION['COMPANYID'];
         $_SESSION['COMPANY_FULLNAME'] = $_SESSION['COMPANYNAME'] ;
-        $_SESSION['COMPANY_USERNAME'] =$_SESSION['USERNAME'];
+        $_SESSION['COMPANY_USERNAME'] =$_SESSION['COMPANYUSERNAME'];
         $_SESSION['COMPANY_ROLE'] = $_SESSION['ROLE'];
         $_SESSION['COMPANY_PICLOCATION'] = $_SESSION['COMPANYLOGO'];
 
-        unset( $_SESSION['USERID'] );
-        unset( $_SESSION['FULLNAME'] );
-        unset( $_SESSION['USERNAME'] );
+        unset( $_SESSION['COMPANYID'] );
+        unset( $_SESSION['COMPANYNAME'] );
+        unset( $_SESSION['COMPANYUSERNAME'] );
         unset( $_SESSION['PASS'] );
         unset( $_SESSION['ROLE'] );
         unset($_SESSION['PICLOCATION']);

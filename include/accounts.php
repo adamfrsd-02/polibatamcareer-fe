@@ -62,6 +62,7 @@ class User {
 			 	$user_found = $mydb->loadSingleResult();
 			 	$_SESSION['COMPANYID']   		= $user_found->COMPANYID;
 			 	$_SESSION['COMPANYNAME']      	= $user_found->COMPANYNAME;
+			 	$_SESSION['COMPANYUSERNAME'] 	= $user_found->COMPANYUSERNAME;
 			 	$_SESSION['COMPANYPASSWORD'] 	= $user_found->COMPANYPASSWORD;
 			 	$_SESSION['ROLE'] 				= "company";
 			 	$_SESSION['COMPANYLOGO'] 		= $user_found->COMPANYLOGO;
