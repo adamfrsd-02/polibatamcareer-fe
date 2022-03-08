@@ -46,7 +46,7 @@ switch ($action) {
 			$job->SECTOR_VACANCY					= $_POST['SECTOR_VACANCY']; 
 			$job->DATEPOSTED						= date('Y-m-d H:i');
 			$job->create();
-
+			// echo "<pre>".print_r($_POST,1)."</pre>";
 			message("New Job Vacancy created successfully!", "success");
 			redirect("index.php");
 			

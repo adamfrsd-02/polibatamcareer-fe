@@ -26,7 +26,8 @@
                             $mydb->setQuery($sql);
                             $res  = $mydb->loadSingleResult();
                           ?>
-                          <input type="text" class="form-control input-sm" id="COMPANYNAME" readonly value="<?= $res->COMPANYNAME?>" name="COMPANYID">
+                          <input type="hidden" name="COMPANYID" value="<?= $id ?>">
+                          <input type="text" class="form-control input-sm" id="COMPANYNAME" readonly value="<?= $res->COMPANYNAME?>" name="COMPANYNAME">
                         <!-- <select class="form-control input-sm" id="COMPANYID" name="COMPANYID">
                           <option value="None">Select</option>
                           <?php 

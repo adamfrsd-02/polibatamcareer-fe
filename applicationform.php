@@ -12,9 +12,9 @@
     </div> -->
 
  <?php
-if (isset($_GET['search'])) {
+if (isset($_GET['job'])) {
 # code...
-$jobid = $_GET['search'];
+$jobid = $_GET['job'];
 }else{
 $jobid = '';
 
