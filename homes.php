@@ -164,7 +164,7 @@
                 foreach($query as $item) :
                     // echo "<pre>".print_r($item,1)."</pre>";
             ?>
-                <div class="card py-2" style="width: auto; border-radius: 20px;">
+                <div class="card py-2" style="width: auto; border-radius: 20px; height: 100%">
                     <div class="card-body">
                         <div class="row mt-0">
                             <div class="col-md-3">

@@ -158,9 +158,9 @@ if (!isset($_SESSION['APPLICANTID'])) {
                                         </div>
                                     </div>
                                     <div class="panel-body"> 
-                                        <label class="col-md-2" for="picture" style="padding: 0;margin: 0;">Attachtment File:</label> 
+                                        <label class="col-md-2" for="picture" style="padding: 0;margin: 0;">Attachment File:</label> 
                                         <div class="col-md-10" style="padding: 0;margin: 0;">
-                                            <input id="picture" name="picture" type="file">
+                                            <input id="picture" class="form-control" name="picture" type="file">
                                             <input name="MAX_FILE_SIZE" type="hidden" value="1000000"> 
                                         </div> 
                                     </div>
@@ -168,9 +168,9 @@ if (!isset($_SESSION['APPLICANTID'])) {
                             </div> 
                         </div>
                        <div class="form-group">
-                        <div class="col-md-12"> 
-                             <button class="btn btn-primary btn-md pull-right" name="submit" type="submit" >Submit <span class="fa fa-arrow-right"></span></button>
-                          <a href="index.php" class="btn btn-info"><span class="fa fa-arrow-left"></span>&nbsp;<strong>Back</strong></a> 
+                        <div class="col-md-12 mt-3"> 
+                            <button class="btn btn-primary pull-right py-2" name="submit" type="submit" >Submit <span class="fa fa-arrow-right"></span></button>
+                            <a href="index.php" class="btn btn-warning text-white"><i class="fa fa-arrow-left"></i>&nbsp;<strong>Back</strong></a> 
                         </div>
                        </div> 
                     </form>

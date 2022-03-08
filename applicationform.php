@@ -24,13 +24,13 @@ $mydb->setQuery($sql);
 $result = $mydb->loadSingleResult();
 
 ?> 
-<section class="ftco-section contact-section bg-light">
-      <div class="container">
+<section class="ftco-section contact-section bg-light mb-5">
+      <div class="container mt-3">
         <div class="row d-flex mb-5 contact-info">
 
 
 
-            <h2 class="page-header" >Job Details</h2>
+            <h2 class="page-header mt-4" >Job Details</h2>
            
         </div>
         <div class="row block-9">
@@ -47,7 +47,7 @@ $result = $mydb->loadSingleResult();
                               <div style="border-bottom: 1px solid #ddd;padding: 10px;font-size: 25px;font-weight: bold;color: #000;margin-bottom: 5px;"><a href="<?php echo web_root.'index.php?q=viewjob&search='.$result->JOBID;?>"><?php echo $result->OCCUPATIONTITLE ;?></a> 
                               </div> 
                          </div>
-                         <div class="panel-body">
+                         <div class="panel-body mt-4">
                                   <div class="row contentbody">
                                         <div class="col-md-6">
                                             <ul>
@@ -63,25 +63,37 @@ $result = $mydb->loadSingleResult();
                                             </ul>
                                         </div>
                                         <div class="col-md-12">
-                                            <p>Qualification/Work Experience :</p>
+                                            <p class="text-bold">Qualification/Work Experience :</p>
                                              <ul style="list-style: none;"> 
                                                 <li><?php echo $result->QUALIFICATION_WORKEXPERIENCE ;?></li> 
                                             </ul> 
                                         </div>
                                         <div class="col-md-12"> 
-                                            <p>Job Description:</p>
+                                            <p class="text-bold">Job Description:</p>
                                             <ul style="list-style: none;"> 
                                                  <li><?php echo $result->JOBDESCRIPTION ;?></li> 
                                             </ul> 
                                          </div>
                                         <div class="col-md-12">
-                                            <p>Employer :  <?php echo  $result->COMPANYNAME; ?></p> 
-                                            <p>Location :  <?php echo  $result->COMPANYADDRESS; ?></p>
+                                            <table class="table" style="border: 0px solid #F8F9FA">
+                                              <tr>
+                                                <td class="text-bold">Company</td>
+                                                <td>:</td>
+                                                <td><?= $result->COMPANYNAME; ?></td>
+                                              </tr>
+                                              <tr>
+                                                <td class="text-bold">Address</td>
+                                                <td>:</td>
+                                                <td><?= $result->COMPANYADDRESS; ?></td>
+                                              </tr>
+                                              <tr>
+                                                <td class="text-bold">Posted On</td>
+                                                <td>:</td>
+                                                <td> <?php echo date_format(date_create($result->DATEPOSTED),'M d, Y'); ?></td>
+                                              </tr>
+                                            </table>
                                         </div>
                                     </div>
-                         </div>
-                         <div class="panel-footer">
-                              Date Posted :  <?php echo date_format(date_create($result->DATEPOSTED),'M d, Y'); ?>
                          </div>
                      </div> 
 
