@@ -153,6 +153,22 @@
                       </div>
                     </div>
                   </div>   
+                  <div class="form-group">
+                    <div class="col-md-8">
+                      <label class="col-md-4 control-label" for=
+                      "">Assignment Process:</label> 
+                      <div class="col-md-8">
+                        <select id="children" name="assignment[]">
+                          <option value ="assesment">Online Assesment</option>
+                          <option value ="interview">Interview</option>
+                          <option value ="mc">Medical Checkup</option>
+                      </select>
+                      <button type="button" id="plus">+</button>
+                      <button type="button" id="minus">-</button>
+                      </div>
+                    </div>
+                  </div>   
+                  
                   
                   <div class="form-group">
                     <div class="col-md-8">
