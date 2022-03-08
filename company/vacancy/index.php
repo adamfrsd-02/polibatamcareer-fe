@@ -23,6 +23,15 @@ switch ($view) {
     case 'view' :
 		$content    = 'view.php';		
 		break;
+	case 'assesment' :
+		$content = 'assesment.php';
+		break;
+	case 'question' :
+		$content = 'question.php';
+		break;
+	case 'interview' :
+		$content = 'interview.php';
+		break;
 
 	default :
 		$content    = 'list.php';		
