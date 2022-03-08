@@ -67,7 +67,7 @@ global $mydb;
 <div class="col-sm-12 content-header" style="">View Details</div>
 <div class="col-sm-6 content-body" > 
 	<p>Job Details</p> 
-	<h3><?php echo $job->OCCUPATIONTITLE; ?></h3>
+	<h3 class="text-bold"><?php echo $job->OCCUPATIONTITLE; ?></h3>
 	<input type="hidden" name="JOBREGID" value="<?php echo $jobreg->REGISTRATIONID;?>">
 	<input type="hidden" name="APPLICANTID" value="<?php echo $appl->APPLICANTID;?>">
 
@@ -85,36 +85,65 @@ global $mydb;
         </ul>
 	</div>
 	<div class="col-sm-12">
-		<p>Job Description : </p>   
+		<p class="text-bold">Job Description : </p>   
 		<p style="margin-left: 15px;"><?php echo $job->JOBDESCRIPTION;?></p>
 	</div>
 	<div class="col-sm-12"> 
-		<p>Qualification/Work Experience : </p>
+		<p class="text-bold">Qualification/Work Experience : </p>
 		<p style="margin-left: 15px;"><?php echo $job->QUALIFICATION_WORKEXPERIENCE; ?></p>
 	</div>
 	<div class="col-sm-12"> 
-		<p>Employeer : </p>
+		<p class="text-bold">Employeer : </p>
 		<p style="margin-left: 15px;"><?php echo $comp->COMPANYNAME ; ?></p> 
-		<p style="margin-left: 15px;">@ <?php echo $comp->COMPANYADDRESS ; ?></p>
+		<p style="margin-left: 15px;"  class="text-bold">@ <?php echo $comp->COMPANYADDRESS ; ?></p>
 	</div>
 </div>
 <div class="col-sm-6 content-body" >
 	<p>Applicant Infomation</p> 
-	<h3> <?php echo $appl->LNAME. ', ' .$appl->FNAME . ' ' . $appl->MNAME;?></h3>
-	<ul> 
-		<li><b>Address</b> : <?php echo $appl->ADDRESS; ?></li>
-		<li><b>Contact No</b> : <?php echo $appl->CONTACTNO;?></li>
-		<li><b>Email Address</b> : <?php echo $appl->EMAILADDRESS;?></li>
-		<li><b>Sex</b> : <?php echo $appl->SEX;?></li>
-		<li><b>Age</b> : <?php echo $appl->AGE;?></li>
-		<?php
-			if ($appl->LINKEDINLINK) {
-				?>
-				<li><b>Linkedin Profile</b> : <a href="<?= $appl->LINKEDINLINK; ?>" target="_BLANK"><?= $appl->LINKEDINLINK; ?></a></li>
+	<h3 class="text-bold"> <?php echo ucfirst($appl->FNAME). ' ' .ucfirst($appl->LNAME) ;?></h3>
+	<table class="table" style="border: none;">
+		<tr>
+			<td>Address</td>
+			<td>:</td>
+			<td class="text-start"><?php echo $appl->ADDRESS; ?></td>
+		</tr>
+		<tr>
+			<td>Email Address</td>
+			<td>:</td>
+			<td class="text-start"><?php echo $appl->EMAILADDRESS;?></td>
+		</tr>
+		<tr>
+			<td>Contact</td>
+			<td>:</td>
+			<td class="text-start"><?php echo $appl->CONTACTNO;?></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>:</td>
+			<td class="text-start"><?php echo $appl->SEX;?></td>
+		</tr>
+		<tr>
+			<td>Age</td>
+			<td>:</td>
+			<td class="text-start"><?php echo $appl->AGE;?></td>
+		</tr>
+		<tr>
+			<td>LinkedIn</td>
+			<td>:</td>
+			<td class="text-start">
 				<?php
-			}
-		?>
-	</ul>
+				if ($appl->LINKEDINLINK) :
+				?>
+					<a href="<?= $appl->LINKEDINLINK; ?>" target="_BLANK"><?= $appl->LINKEDINLINK; ?></a>
+				<?php
+				else :
+					echo 'N/A';
+				endif;
+				?>
+			</td>
+		</tr>
+	</table>
+
 	<div class="col-sm-12"> 
 		<p>Educational Attainment : </p>
 		<p style="margin-left: 15px;"><?php echo $appl->DEGREE;?></p>
@@ -130,7 +159,7 @@ global $mydb;
 
 	<div class="col-sm-12">
 		<p>Feedback</p>
-		<textarea class="input-group" name="REMARKS"><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></textarea>
+		<textarea class="input-group" style="box-sizing: border-box;" name="REMARKS"><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></textarea>
 	</div>
 	<div class="col-sm-12  submitbutton "> 
 		<button type="submit" name="submit" class="btn btn-primary">Send</button>
