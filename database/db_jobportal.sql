@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Mar 2022 pada 14.01
+-- Waktu pembuatan: 08 Mar 2022 pada 13.42
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -53,7 +53,7 @@ CREATE TABLE `tblapplicants` (
 --
 
 INSERT INTO `tblapplicants` (`APPLICANTID`, `FNAME`, `LNAME`, `MNAME`, `ADDRESS`, `SEX`, `CIVILSTATUS`, `BIRTHDATE`, `BIRTHPLACE`, `AGE`, `USERNAME`, `PASS`, `EMAILADDRESS`, `CONTACTNO`, `DEGREE`, `APPLICANTPHOTO`, `NATIONALID`, `LINKEDINLINK`) VALUES
-(2019016, 'adam', 'firdaus', 'asd', 'asd', 'Female', 'none', '1980-01-29', 'asd', 39, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '082828282', 'asd', 'photos/ktp.jpeg', '', 'https://www.linkedin.com/in/antos-wijaya-saputra-b078b3163/'),
+(2019016, 'Anto Wijaya', 'Saputra', 'asd', 'bengkong', 'Male', 'none', '1980-01-29', 'asd', 42, 'aa', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'a@gmil.com', '08882319930', 'asd', 'photos/ktp.jpeg', '', 'https://www.linkedin.com/in/anto-wijaya-saputra-b078b3163/'),
 (2019018, 'asdasd', 'asd', 'asd', 'sadas', 'Female', 'Single', '1992-01-12', 'sad', 27, 'ss', 'c1c93f88d273660be5358cd4ee2df2c2f3f0e8e7', 'a@gmil.com', 'sad', 'sad', '', '', 'https://www.linkedin.com/in/anto-wijaya-saputra-b078b3163/'),
 (2019020, 'sad', 'sad', 'sad', 'asdsad', 'Female', 'Single', '1992-10-14', 'asdsad', 27, 'ddd', '9c969ddf454079e3d439973bbab63ea6233e4087', 'a@gmil.com', '123123', 'sadsadsad', 'photos/077db70b-ab84-46c4-bbaa-a5dd6b7332a4_200x200.png', '', '');
 
@@ -99,7 +99,7 @@ CREATE TABLE `tblautonumbers` (
 --
 
 INSERT INTO `tblautonumbers` (`AUTOID`, `AUTOSTART`, `AUTOEND`, `AUTOINC`, `AUTOKEY`) VALUES
-(1, '02983', 8, 1, 'userid'),
+(1, '02983', 9, 1, 'userid'),
 (2, '000', 79, 1, 'employeeid'),
 (3, '0', 21, 1, 'APPLICANT'),
 (4, '0000', 3, 1, 'FILEID');
@@ -142,6 +142,8 @@ INSERT INTO `tblcategory` (`CATEGORYID`, `CATEGORY`) VALUES
 CREATE TABLE `tblcompany` (
   `COMPANYID` int(11) NOT NULL,
   `COMPANYNAME` varchar(90) NOT NULL,
+  `COMPANYUSERNAME` varchar(90) NOT NULL,
+  `COMPANYPASSWORD` varchar(90) NOT NULL,
   `COMPANYADDRESS` varchar(90) NOT NULL,
   `COMPANYCONTACTNO` varchar(30) NOT NULL,
   `COMPANYSTATUS` varchar(90) NOT NULL,
@@ -153,8 +155,9 @@ CREATE TABLE `tblcompany` (
 -- Dumping data untuk tabel `tblcompany`
 --
 
-INSERT INTO `tblcompany` (`COMPANYID`, `COMPANYNAME`, `COMPANYADDRESS`, `COMPANYCONTACTNO`, `COMPANYSTATUS`, `COMPANYMISSION`, `COMPANYLOGO`) VALUES
-(2, 'Lapmodo Batam', 'Batam Center', '8912994', '', 'Oke', 'perusahaan2.png');
+INSERT INTO `tblcompany` (`COMPANYID`, `COMPANYNAME`, `COMPANYUSERNAME`, `COMPANYPASSWORD`, `COMPANYADDRESS`, `COMPANYCONTACTNO`, `COMPANYSTATUS`, `COMPANYMISSION`, `COMPANYLOGO`) VALUES
+(2, 'Lapmodo Batam', 'lapmodo', 'b117455b2310cc6678291aee8e4009538f7d5ba3', 'Batam Center', '8912994', '', 'Oke', 'perusahaan2.png'),
+(8, 'SAPU LINTAS DIGITAL', 'sapulidi', 'fa7cae9a4e470acb9481ca3bb314445ada420906', 'asd', '01201123', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -318,7 +321,8 @@ CREATE TABLE `tblusers` (
 --
 
 INSERT INTO `tblusers` (`USERID`, `FULLNAME`, `USERNAME`, `PASS`, `ROLE`, `PICLOCATION`) VALUES
-('00018', 'Adam Firdaus', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', '');
+('00018', 'Adam Firdaus', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Administrator', 'photos/a.jpg'),
+('029838', 'coco', 'coco', '09f836894fc1fe9af6f429fc24dcccc2e6847fe0', 'Staff', '');
 
 -- --------------------------------------------------------
 
@@ -339,7 +343,7 @@ CREATE TABLE `tbl_curriculum_vitae` (
 --
 
 INSERT INTO `tbl_curriculum_vitae` (`id_cv`, `APPLICANTID`, `skill_utama`, `skill_secondary`, `jenjang_sekolah`) VALUES
-(1, 2019016, 'Web Developer', 'a:3:{i:0;s:14:\"Design Graphic\";i:1;s:20:\" Android Development\";i:2;s:12:\" Photography\";}', 'a:2:{i:0;s:23:\"SMKIbnu Sina(2018-2019)\";i:1;s:35:\" Politeknik Negeri Batam(2022-2025)\";}'),
+(1, 2019016, 'Web Developer', 'a:3:{i:0;s:15:\"Web Development\";i:1;s:20:\" Android Development\";i:2;s:12:\" Photography\";}', 'a:2:{i:0;s:23:\"SMKIbnu Sina(2018-2019)\";i:1;s:35:\" Politeknik Negeri Batam(2022-2025)\";}'),
 (8, 2019018, 'Graphic Design', 'a:3:{i:0;s:14:\"Design Graphic\";i:1;s:21:\"  Android Development\";i:2;s:13:\"  Photography\";}', 'a:2:{i:0;s:24:\"SMK Ibnu Sina(2018-2019)\";i:1;s:36:\"  Politeknik Negeri Batam(2022-2025)\";}');
 
 -- --------------------------------------------------------
@@ -484,7 +488,7 @@ ALTER TABLE `tblcategory`
 -- AUTO_INCREMENT untuk tabel `tblcompany`
 --
 ALTER TABLE `tblcompany`
-  MODIFY `COMPANYID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `COMPANYID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tblemployees`
