@@ -44,7 +44,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?php echo web_root;?>/admin/" class="logo">
+    <a href="<?php echo web_root;?>/company/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b></b></span>
       <!-- logo for regular state and mobile devices -->
@@ -62,27 +62,28 @@
  
           <?php
               $user = New User();
-              $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
+              $singleuser = $user->single_company($_SESSION['COMPANY_USERID']);
+              // echo "<pre>".print_r($singleuser,1)."</pre>";
 
           ?>
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu" style="padding-right: 15px;"  >
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
+              <img src="<?php echo web_root.'assets/upload/company_logo/'. $singleuser->COMPANYLOGO;?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $singleuser->COMPANYNAME; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header"> 
-                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
+                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'assets/upload/company_logo/'. $singleuser->COMPANYLOGO;?>" class="img-circle" alt="User Image" />  
               </li> 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo web_root.'company/user/index.php?view=view&id='.$_SESSION['COMPANY_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo web_root ;?>company/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -106,7 +107,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Image.</h4>
                                 </div>
 
-                                <form action="<?php echo web_root; ?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method=
+                                <form action="<?php echo web_root; ?>company/user/controller.php?action=photos" enctype="multipart/form-data" method=
                                 "post">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -148,27 +149,17 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu"> 
         <li  class="<?php echo (currentpage() == 'index.php') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/">
+          <a href="<?php echo web_root ;?>company/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>  
           </a> 
-        </li> 
-        <li class="<?php echo (currentpage() == 'company') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/company/">
-            <i class="fa fa-building"></i> <span>Company</span> 
-          </a>
         </li>
-        <!-- <li class="<?php echo (currentpage() == 'vacancy') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/vacancy/">
+        <li class="<?php echo (currentpage() == 'vacancy') ? "active" : false;?>" >
+          <a href="<?php echo web_root ;?>company/vacancy/">
             <i class="fa fa-suitcase"></i> <span>Vacancy</span> 
           </a>
-        </li> -->
-        <li class="<?php echo (currentpage() == 'employee') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/employee/">
-            <i class="fa fa-users"></i> <span>Employee</span> 
-          </a>
-        </li> 
+        </li>
         <li class="<?php echo (currentpage() == 'applicants') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/applicants/">
+          <a href="<?php echo web_root ;?>company/applicants/">
             <i class="fa fa-users"></i> <span>Applicants</span> 
             <span class="label label-primary pull-right">
               <?php
@@ -178,11 +169,6 @@
                 echo $pending->APPL;
               ?>
             </span>
-          </a>
-        </li> 
-        <li class="<?php echo (currentpage() == 'category') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/category/">
-            <i class="fa fa-list"></i> <span>Category</span>  
           </a>
         </li> 
        <!--  <li class="treeview">
@@ -201,10 +187,6 @@
           </ul>
         </li> -->
          
-         <li class="<?php echo (currentpage() == 'user') ? "active" : false;?>">
-          <a href="<?php echo web_root; ?>admin/user/">
-            <i class="fa fa-user"></i> <span>Manage Users</span> </a>
-        </li>
         
       </ul>
     </section>
@@ -230,7 +212,7 @@
             }else{
               $active_title = '<li class='.$active_title.'>'.$title.'</li>';
             }
-            echo '<li><a href='.web_root.'admin/><i class="fa fa-dashboard"></i> Home</a></li>';
+            echo '<li><a href='.web_root.'company/><i class="fa fa-dashboard"></i> Home</a></li>';
             echo  $active_title;
             echo  isset($_GET['view']) ? '<li class="active">'.$_GET['view'].'</li>' : '';
           } 
@@ -287,14 +269,14 @@
       <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
       <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script> 
 
-   <!--      <script src="<?php echo web_root; ?>admin/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo web_root; ?>admin/js/dataTables.bootstrap.min.js"></script>
+   <!--      <script src="<?php echo web_root; ?>company/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo web_root; ?>company/js/dataTables.bootstrap.min.js"></script>
  <script type="text/javascript" src="<?php echo web_root; ?>js/jquery-1.10.2.js"></script>       
         <script type="text/javascript" src="<?php echo web_root; ?>js/jquery.mixitup.min.js" ></script>
         <script type="text/javascript" src="<?php echo web_root; ?>js/main.js" ></script> 
         <script type="text/javascript" src="<?php echo web_root; ?>js/janobe.js" ></script> 
-        <script src="<?php echo web_root; ?>admin/js/ekko-lightbox.js"></script>
-        <script src="<?php echo web_root; ?>admin/js/lightboxfunction.js"></script> 
+        <script src="<?php echo web_root; ?>company/js/ekko-lightbox.js"></script>
+        <script src="<?php echo web_root; ?>company/js/lightboxfunction.js"></script> 
   -->
 <!-- jQuery 2.1.4 --> 
 

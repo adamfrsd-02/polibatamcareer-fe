@@ -28,7 +28,7 @@ switch ($action) {
 		if(isset($_POST['save'])){
 
  // `COMPANYNAME`, `COMPANYADDRESS`, `COMPANYCONTACTNO`
-		if ( $_POST['COMPANYNAME'] == "" || $_POST['COMPANYADDRESS'] == "" || $_POST['COMPANYCONTACTNO'] == "" ) {
+		if ( $_POST['COMPANYNAME'] == "" || $_POST['COMPANYADDRESS'] == "" || $_POST['COMPANYUSERNAME'] == "" || $_POST['COMPANYPASSWORD'] == "" || $_POST['COMPANYCONTACTNO'] == "" ) {
 			$messageStats = false;
 			message("All field is required!","error");
 			redirect('index.php?view=add');
@@ -36,6 +36,8 @@ switch ($action) {
 			$company = New Company();
 			$company->COMPANYNAME		= $_POST['COMPANYNAME'];
 			$company->COMPANYADDRESS	= $_POST['COMPANYADDRESS'];
+			$company->COMPANYUSERNAME	= $_POST['COMPANYUSERNAME'];
+			$company->COMPANYPASSWORD	= sha1($_POST['COMPANYPASSWORD']);
 			$company->COMPANYCONTACTNO	= $_POST['COMPANYCONTACTNO'];
 			// $company->COMPANYMISSION	= $_POST['COMPANYMISSION'];
 			$company->create();

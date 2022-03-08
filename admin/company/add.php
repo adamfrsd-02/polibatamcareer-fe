@@ -29,6 +29,30 @@
                   <div class="form-group">
                     <div class="col-md-8">
                       <label class="col-md-4 control-label" for=
+                      "COMPANYUSERNAME">Company Username:</label>
+
+                      <div class="col-md-8">
+                         <input class="form-control input-sm" id="COMPANYUSERNAME" name="COMPANYUSERNAME" placeholder=
+                            "Company Username" type="text" value="" autocomplete="none">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-8">
+                      <label class="col-md-4 control-label" for=
+                      "COMPANYPASSWORD">Company Password:</label>
+
+                      <div class="col-md-8">
+                         <input class="form-control input-sm" id="COMPANYPASSWORD" name="COMPANYPASSWORD" placeholder=
+                            "Company Password" type="password" value="" autocomplete="none">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-md-8">
+                      <label class="col-md-4 control-label" for=
                       "COMPANYADDRESS">Company Address:</label> 
                       <div class="col-md-8">
                         <textarea class="form-control input-sm" id="COMPANYADDRESS" name="COMPANYADDRESS" placeholder=
