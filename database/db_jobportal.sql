@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Mar 2022 pada 07.58
+-- Waktu pembuatan: 07 Mar 2022 pada 14.01
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.7
 
@@ -77,6 +77,7 @@ CREATE TABLE `tblattachmentfile` (
 
 INSERT INTO `tblattachmentfile` (`FILEID`, `JOBID`, `FILE_NAME`, `FILE_LOCATION`, `USERATTACHMENTID`) VALUES
 (201900001, 2, 'Resume', 'photos/24122019073209Filtering a Group of Data VB.Net and SQL Server 2019.docx', 2019020),
+(202200002, 1, 'Resume', 'photos/07032022023905ktp.jpeg', 2019016),
 (2147483647, 2, 'Resume', 'photos/24122019072801Filtering a Group of Data VB.Net and SQL Server 2019.docx', 2019019);
 
 -- --------------------------------------------------------
@@ -101,7 +102,7 @@ INSERT INTO `tblautonumbers` (`AUTOID`, `AUTOSTART`, `AUTOEND`, `AUTOINC`, `AUTO
 (1, '02983', 8, 1, 'userid'),
 (2, '000', 79, 1, 'employeeid'),
 (3, '0', 21, 1, 'APPLICANT'),
-(4, '0000', 2, 1, 'FILEID');
+(4, '0000', 3, 1, 'FILEID');
 
 -- --------------------------------------------------------
 
@@ -253,6 +254,13 @@ CREATE TABLE `tbljobregistration` (
   `HVIEW` tinyint(1) NOT NULL DEFAULT 1,
   `DATETIMEAPPROVED` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbljobregistration`
+--
+
+INSERT INTO `tbljobregistration` (`REGISTRATIONID`, `COMPANYID`, `JOBID`, `APPLICANTID`, `APPLICANT`, `REGISTRATIONDATE`, `REMARKS`, `FILEID`, `PENDINGAPPLICATION`, `HVIEW`, `DATETIMEAPPROVED`) VALUES
+(6, 2, 1, 2019016, 'adam firdaus', '2022-03-07', 'Success', 202200002, 0, 0, '2022-03-07 19:58:17');
 
 -- --------------------------------------------------------
 
@@ -500,7 +508,7 @@ ALTER TABLE `tbljob`
 -- AUTO_INCREMENT untuk tabel `tbljobregistration`
 --
 ALTER TABLE `tbljobregistration`
-  MODIFY `REGISTRATIONID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `REGISTRATIONID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `tblprogress`

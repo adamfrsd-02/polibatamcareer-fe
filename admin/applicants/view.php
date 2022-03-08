@@ -102,11 +102,18 @@ global $mydb;
 	<p>Applicant Infomation</p> 
 	<h3> <?php echo $appl->LNAME. ', ' .$appl->FNAME . ' ' . $appl->MNAME;?></h3>
 	<ul> 
-		<li>Address : <?php echo $appl->ADDRESS; ?></li>
-		<li>Contact No. : <?php echo $appl->CONTACTNO;?></li>
-		<li>Email Address. : <?php echo $appl->EMAILADDRESS;?></li>
-		<li>Sex: <?php echo $appl->SEX;?></li>
-		<li>Age : <?php echo $appl->AGE;?></li> 
+		<li><b>Address</b> : <?php echo $appl->ADDRESS; ?></li>
+		<li><b>Contact No</b> : <?php echo $appl->CONTACTNO;?></li>
+		<li><b>Email Address</b> : <?php echo $appl->EMAILADDRESS;?></li>
+		<li><b>Sex</b> : <?php echo $appl->SEX;?></li>
+		<li><b>Age</b> : <?php echo $appl->AGE;?></li>
+		<?php
+			if ($appl->LINKEDINLINK) {
+				?>
+				<li><b>Linkedin Profile</b> : <a href="<?= $appl->LINKEDINLINK; ?>" target="_BLANK"><?= $appl->LINKEDINLINK; ?></a></li>
+				<?php
+			}
+		?>
 	</ul>
 	<div class="col-sm-12"> 
 		<p>Educational Attainment : </p>
@@ -118,7 +125,7 @@ global $mydb;
 <div class="col-sm-12 content-footer">
 <p><i class="fa fa-paperclip"></i>  Attachment Files</p>
 	<div class="col-sm-12 slider">
-		 <h3>Download Resume <a href="<?php echo web_root.'applicant/'.$attachmentfile->FILE_LOCATION; ?>">Here</a></h3>
+		 <h3>Download Resume <a href="<?php echo web_root.'applicant/'.$attachmentfile->FILE_LOCATION; ?>" target="_BLANK">Here</a></h3>
 	</div> 
 
 	<div class="col-sm-12">

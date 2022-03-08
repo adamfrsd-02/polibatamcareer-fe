@@ -225,7 +225,8 @@ function doLogin(){
          redirect(web_root."applicant-page/");
      
     }else{
-    	 echo "Account does not exist! Please contact Administrator."; 
+    	 echo "<script>alert('Account does not exist! Please contact Administrator.')</script>"; 
+		 redirect(web_root."index.php");
     } 
 }
  
