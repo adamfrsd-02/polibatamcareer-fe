@@ -13,20 +13,6 @@
         </div>
         <!-- body cv -->
         <!-- profile section -->
-        <center>
-            <div class="header-profile row mt-4">
-                <div class="profile-photo col-md-6">
-                    <img style="width: 180px; height: 180px; border-radius: 50%;" src="../assets/images/_DSC6958.JPG"
-                        alt="foto profile">
-                </div>
-                <div class="profile-info col-md-6 text-start">
-                    <p class="header-title">Adam Firdaus</p>
-                    <h3 class="text-muted" style="margin-top: -10px;">4311901038</h3>
-                    <h3 class="text-muted">Teknik Informatika</h3>
-
-                </div>
-            </div>
-        </center>
         <?php
             $applicantid = $_SESSION['APPLICANTID'];
             $sql = "SELECT * FROM tblapplicants where APPLICANTID = '$applicantid'  ";
@@ -37,6 +23,21 @@
             $mydb->setQuery($sqlcv);
             $rescv = $mydb->loadSingleResult();
         ?>
+        <center>
+            <div class="header-profile row mt-4">
+                <div class="profile-photo col-md-6">
+                    <img style="width: 180px; height: 180px; border-radius: 50%;" src="<?= web_root; ?>applicant-page/<?= $appl->APPLICANTPHOTO; ?>"
+                        alt="foto profile">
+                </div>
+                <div class="profile-info col-md-6 text-start">
+                    <p class="header-title"><?= $cur->FNAME; ?> <?= $cur->LNAME; ?></p>
+                    <h3 class="text-muted" style="margin-top: -10px;">4311901038</h3>
+                    <h3 class="text-muted">Teknik Informatika</h3>
+
+                </div>
+            </div>
+        </center>
+        
         <div class="body-profile mt-5">
             <div class="card p-5">
                 <form action="controller.php?action=edit" method="post">

@@ -63,7 +63,7 @@
                     <!-- <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang -->
                         <!-- sesuai</span> -->
                 </div>
-                <div class="owl-carousel mt-1 px-2">
+                <div class="owl-carousel mt-1 px-2" style="display: flex !important">
                     <!-- items -->
                     
                     <?php 
@@ -85,7 +85,7 @@
                        foreach ($res as $row) { 
                     ?>
 
-                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                    <div class="card p-4 px-4 h-100" style="width: auto; border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
@@ -124,7 +124,7 @@
                 <h2 class="header-title w-50 mb-4" style="color: #183a64;">
                     Lowongan Kerja Terbaru
                 </h2>
-                <div class="owl-carousel mt-1 px-2">
+                <div class="row">
                     <?php 
                 $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
                        WHERE j.`COMPANYID`=c.`COMPANYID` AND CATEGORY LIKE '%{$category}%' AND (COMPANYNAME LIKE '%{$search}%' OR (`OCCUPATIONTITLE` LIKE '%{$search}%') OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
@@ -138,7 +138,9 @@
                        foreach ($res as $row) { 
                     ?>
 
-                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                    
+                        <div class="col-md-4 mb-4">
+                        <div class="card p-4 px-4 h-100" style="border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
@@ -163,14 +165,16 @@
                                 style="border-radius: 10px !important; border-style: none;">Apply</a>
                         </div>
                     </div>
-                    <!-- itemss -->
+                        </div>
+                        <!-- itemss -->
                         <?php
                        } }else {
-                        echo '<tr><td>No result found!.....</td></tr>';
-                       }
+                           echo '<tr><td>No result found!.....</td></tr>';
+                        }
                         ?>
+                        </div>
+                    </div>
 
-                </div>
             </div>
         <section class="ftco-section bg-light">
             <div class="container">

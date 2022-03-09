@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" aria-current="page" href="#">Home</a>
+                        <a class="nav-link text-semibold text-blue" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-semibold text-blue" href="#company">Our Partner</a>
@@ -113,6 +113,7 @@
     <!-- modal login -->
 
     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -123,39 +124,40 @@
                             Silahkan menggunakan identitas yang terdaftar
                         </p>
                         <!-- form -->
-                        <form>
+                        <form method="post" action="process.php?action=login">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">NIK/NIM</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" />
-                                <div id="emailHelp" class="form-text">
+                                <label for="nim" class="form-label">NIK/NIM</label>
+                                <input type="text" class="form-control" id="nim"
+                                    aria-describedby="nimHelp" name="USERNAME"  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" />
+                                <div id="nimHelp" class="form-text">
                                     Gunakan NIM/NIK yang telah terdaftar.
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" />
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="PASS" />
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                                <label class="form-check-label" for="exampleCheck1">Ingat Saya
+                            <!-- <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> />
+                                <label class="form-check-label" for="remember">Ingat Saya
                                 </label>
-                            </div>
-                            <butto type="submit" class="btn btn-primary w-100">
+                            </div> -->
+                            <button type="submit" class="btn btn-primary w-100">
                                 Submit
-                            </butto n>
+                            </button>
                         </form>
                         <div class="another-action text-center mt-4 text-blue">
                             <p>
-                                Belum Punya Akun ? <a href="register.html">Daftar Disini</a>
+                                Belum Punya Akun ? <a href="#">Daftar Disini</a>
                             </p>
-                            <a href="#" class="text-bold text-blue" style="text-decoration: none">Lupa Password ?</a>
+                            <!-- <a href="#" class="text-bold text-blue" style="text-decoration: none">Lupa Password ?</a> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- end modal login -->
     <!-- end modal login -->
 
     <!-- <img
@@ -173,8 +175,7 @@
                 </h2>
             </div>
             <!-- search section -->
-            <hr>
-            <div class="form-search">
+            <!-- <div class="form-search">
                 <form action="career.php?keyword=" method="get">
                     <div class="row mb-4">
                         <div class="col-md-3">
@@ -204,18 +205,18 @@
                         style="border-radius: 10px !important; border-style: none;">Cari
                         Pekerjaan</button>
                 </form>
-            </div>
+            </div> -->
             <hr>
             <!-- end search section -->
             <!-- search result section -->
                 <div class="row">
-                <div class="header-subtitle py-3">
+                <!-- <div class="header-subtitle py-3">
                     <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang
                         sesuai</span>
                 </div>
                 <div class="owl-carousel mt-1 px-2">
-                    <!-- items -->
-                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                    <items -->
+                    <!-- <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
@@ -240,18 +241,18 @@
                             <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
                                 style="border-radius: 10px !important; border-style: none;">Apply</button>
                         </div>
-                    </div>
-                    <!-- itemss -->
+                    </div> -->
+                    <!-- itemss -
 
-                </div>
+                </div> -->
             </div>
             <!-- end search result section -->
             <!-- new job section -->
-            <div class="latest-job mt-5">
-                <h2 class="header-title w-50 mb-4" style="color: #183a64;">
+            <div class="latest-job ">
+                <!-- <h2 class="header-title w-50 mb-4" style="color: #183a64;">
                     Lowongan Kerja Terbaru
-                </h2>
-                <div class="owl-carousel mt-1 px-2 h-auto">
+                </h2> -->
+                <div class="row mt-1 px-2">
                     <!-- items -->
                     <?php
                         include 'config/conn.php';
@@ -260,26 +261,23 @@
                         INNER JOIN tblcompany ON tbljob.COMPANYID=tblcompany.COMPANYID ORDER BY tbljob.DATEPOSTED DESC";
                         $res = $koneksi->query($query);
 
-                        // echo '<pre>';
-                        // print_r(
-                        //     $res
-                        // );
-                        
-                        // echo '</pre>';
                         foreach($res as $row) {
                     ?>
-                    <div class="card p-4 px-4 h-auto" style="width: auto; border-radius: 20px">
+                    <div class="col-md-4 mb-4">
+                    <div class="card p-4 px-4" style="width: auto; height:100%; border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
                                     <div class="job-label py-2 px-4"><?= $row['CATEGORY']?></div>
-                                    <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
+                                    <div class="salary text-start">Rp. <?= number_format($row['SALARIES'],2) ?> <br> per bulan</div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body h-100">
                             <div class="logo p-3">
-                                <img src="assets/logo/<?= $row['COMPANYLOGO']?>" alt="">
+                                <center>
+                                <img src="assets/upload/company_logo/<?= ($row['COMPANYLOGO']) ? $row['COMPANYLOGO'] : 'perusahaan2.png' ?>" alt="">
+                                </center>
                             </div>
                             <div class="career-jobdesc py-2">
                                 <h4>
@@ -292,9 +290,13 @@
                                    <?= $row['JOBDESCRIPTION']?>
                                 </p>
                             </div>
-                            <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
-                                style="border-radius: 10px !important; border-style: none;">Apply</button>
+                            
                         </div>
+                        <div class="card-footer" style="border: none !important; background: none !important;">
+                        <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                style="border-radius: 10px !important; border-style: none;" data-bs-target="#exampleModal" data-bs-toggle="modal">Apply</button>
+                        </div>
+                    </div>
                     </div>
                     <?php
                         }

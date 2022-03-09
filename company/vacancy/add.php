@@ -154,13 +154,13 @@
       <label class="col-md-4 control-label" for="">Assignment Process:</label>
       <div class="col-md-8" id="new_chq">
         <div id="children-1">
-          <select name="assignment[]">
+          <select name="assignment[]" class="form-control">
             <option value="assesment">Online Assesment</option>
             <option value="interview">Interview</option>
           </select>
+          <button type="button"  style="margin-top: 10px; float: right; border: none;" onclick="add()" class="add mt-2 col-md-4 btn btn-success" id="plus"><i class="fa fa-plus-circle"></i> Add Process</button>
         </div>
         <input type="hidden" value="1" id="total_chq">
-        <button type="button" onclick="add()" class="add" id="plus">+</button>
 
       </div>
     </div>
@@ -191,8 +191,8 @@
     var newid = parseInt(id) + 1;
     var new_input =
       '<div id="children-' + newid +
-      '"><select  class="mt-5" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option></select><button type="button" onclick="remove(' +
-      newid + ')"> - </button><br></div>';
+      '"><select  class="form-control col-md-12" style="margin-top: 10px" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option></select><button class="btn btn-warning float-right col-md-4" style="margin-top: 10px; float: right; border: none;" type="button" onclick="remove(' +
+      newid + ')"><i class="fa fa-times-circle"></i> Remove </button><br></div>';
     // $('#new_chq').append(new_input);
     $(new_input).insertAfter("#children-" + id)
     $('#total_chq').val(new_chq_no)

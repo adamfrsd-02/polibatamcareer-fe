@@ -83,7 +83,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             <ul class="dropdown-menu mt-3 p-3" style="right: 0 !important;
                         left: auto !important;" aria-labelledby="navbarDropdownMenuLink">
-                                <h4><b><?= $appl->FNAME.$appl->LNAME ?></b></h4>
+                                <h4><b><?= $appl->FNAME?></b></h4>
                                 <div class="menu mt-3">
                                     <!-- <li style="justify-content: space-between"><a class="dropdown-item" href="#"><i
                                                 class="fa fa-bookmark fa-lg me-2"></i>
