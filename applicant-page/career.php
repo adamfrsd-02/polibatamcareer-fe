@@ -61,26 +61,73 @@
                 </div>
                 <div class="owl-carousel mt-1 px-2">
                     <!-- items -->
+                    
+                    <?php 
+                    
+
+								 $search = isset($_POST['SEARCH']) ? ($_POST['SEARCH']!='') ? $_POST['SEARCH'] : 'All' : 'All';
+								 $company = isset($_POST['COMPANY']) ? ($_POST['COMPANY']!='') ? $_POST['COMPANY'] : 'All' : 'All';
+								 $category = isset($_POST['CATEGORY']) ? ($_POST['CATEGORY']!='') ? $_POST['CATEGORY'] : 'All' : 'All';
+
+								switch ($searchfor) {
+									case 'bycompany':
+										# code...
+									echo 'Result : '  . $search . ' | Company : ' . $company;
+										break;
+									case 'advancesearch':
+										# code... 
+									echo 'Result : '  . $search . ' | Company : ' . $company . ' | Function : ' . $category; 
+									    break;
+									case 'byfunction':
+										# code... 
+									echo 'Result : '  . $search . ' | Function : ' . $category; 
+									    break;
+
+									case 'bytitle':
+										# code... 
+									echo 'Result : '  . $search; 
+									    break;
+									
+									default:
+										# code...
+										break;
+								}
+
+
+                    $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
+                    $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
+                    $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
+                    $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
+                       WHERE j.`COMPANYID`=c.`COMPANYID` AND CATEGORY LIKE '%{$category}%' AND (COMPANYNAME LIKE '%{$search}%' OR (`OCCUPATIONTITLE` LIKE '%{$search}%') OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
+                       $mydb->setQuery($sql);
+                       $cur = $mydb->executeQuery();
+                       $maxrow = $mydb->num_rows($cur);
+                       
+                       if ($maxrow > 0) {
+                           # code... 
+                           $res = $mydb->loadResultList();
+                       foreach ($res as $row) { 
+                    ?>
+
                     <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
                         <div class="card-heading">
                             <div class="career-overview">
                                 <div class="d-flex justify-content-between">
-                                    <div class="job-label py-2 px-4">UX Design</div>
-                                    <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
+                                    <div class="job-label py-2 px-4"><?php echo $row->OCCUPATIONTITLE ?></div>
+                                    <div class="salary text-start">Rp. <?= number_format($row->SALARIES,2) ?> <br> per bulan</div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="logo p-3">
-                                <img src="../assets/logo/perusahaan.png" alt="">
+                                <img src="../assets/upload/company_logo/<?= $row->COMPANYLOGO ?>" alt="">
                             </div>
                             <div class="career-jobdesc py-2">
                                 <p class="job-title">
-                                    Web Designer
+                                    <?= $row->OCCUPATIONTITLE; ?>
                                 </p>
                                 <p class="job-overview">
-                                    Kami mencari alumni yang siap untuk terjun langsung dalam proyek nyata di industri .
-                                    . .
+                                    <?= $row->JOBDESCRIPTION; ?>
                                 </p>
                             </div>
                             <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
@@ -88,7 +135,9 @@
                         </div>
                     </div>
                     <!-- itemss -->
-
+                        <?php
+                       } }
+                        ?>
                 </div>
             </div>
             <!-- end search result section -->
@@ -134,60 +183,12 @@
     
                 <div class="row">
 								<?php 
-
-
-								 $search = isset($_POST['SEARCH']) ? ($_POST['SEARCH']!='') ? $_POST['SEARCH'] : 'All' : 'All';
-								 $company = isset($_POST['COMPANY']) ? ($_POST['COMPANY']!='') ? $_POST['COMPANY'] : 'All' : 'All';
-								 $category = isset($_POST['CATEGORY']) ? ($_POST['CATEGORY']!='') ? $_POST['CATEGORY'] : 'All' : 'All';
-
-								switch ($searchfor) {
-									case 'bycompany':
-										# code...
-									echo 'Result : '  . $search . ' | Company : ' . $company;
-										break;
-									case 'advancesearch':
-										# code... 
-									echo 'Result : '  . $search . ' | Company : ' . $company . ' | Function : ' . $category; 
-									    break;
-									case 'byfunction':
-										# code... 
-									echo 'Result : '  . $search . ' | Function : ' . $category; 
-									    break;
-
-									case 'bytitle':
-										# code... 
-									echo 'Result : '  . $search; 
-									    break;
-									
-									default:
-										# code...
-										break;
-								}
-
-
 								?>
 							</div>
 						</div>
-						<div class="table-container">
+						<!-- <div class="table-container">
 							<table class="table table-filter">
 								<tbody>
-									<?php 
-
-									 $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
-									 $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
-									 $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
-                                     $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
-										WHERE j.`COMPANYID`=c.`COMPANYID` AND CATEGORY LIKE '%{$category}%' AND (COMPANYNAME LIKE '%{$search}%' OR (`OCCUPATIONTITLE` LIKE '%{$search}%') OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
-										$mydb->setQuery($sql);
-										$cur = $mydb->executeQuery();
-										$maxrow = $mydb->num_rows($cur);
-                                        
-										if ($maxrow > 0) {
-                                            # code... 
-                                            $res = $mydb->loadResultList();
-                                            echo "<pre>".print_r($res,1)."</pre>";
-										foreach ($res as $row) { 
-									?>
 				 
 
 
@@ -217,10 +218,10 @@
 
 
 
-								<?php } }else {
+								<?php //} }else { -->
 									echo '<tr><td>No result found!.....</td></tr>';
 
-								}?>
+								// }?>
 								 
 					 
 			</div>
