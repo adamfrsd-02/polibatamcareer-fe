@@ -31,7 +31,7 @@
 								  $id = $_SESSION['COMPANY_USERID'];
 							  		// $mydb->setQuery("SELECT * 
 											// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-							  		$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE  c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` AND C.`COMPANYID`=$id ");
+							  		$mydb->setQuery("SELECT * FROM `tblcompany` c  , `tbljobregistration` j, `tbljob` j2, `tblapplicants` a WHERE  c.`COMPANYID`=j.`COMPANYID` AND  j.`JOBID`=j2.`JOBID` AND j.`APPLICANTID`=a.`APPLICANTID` AND c.`COMPANYID`=$id ");
 							  		$cur = $mydb->loadResultList();
 
 									foreach ($cur as $result) { 

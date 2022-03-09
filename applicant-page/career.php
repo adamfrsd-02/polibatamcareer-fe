@@ -53,11 +53,15 @@
             </div>
             <hr>
             <!-- end search section -->
+            <?php
+                
+
+            ?>
             <!-- search result section -->
             <div class="row">
                 <div class="header-subtitle py-3">
-                    <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang
-                        sesuai</span>
+                    <!-- <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang -->
+                        <!-- sesuai</span> -->
                 </div>
                 <div class="owl-carousel mt-1 px-2">
                     <!-- items -->
@@ -65,39 +69,64 @@
                     <?php 
                     
 
-								 $search = isset($_POST['SEARCH']) ? ($_POST['SEARCH']!='') ? $_POST['SEARCH'] : 'All' : 'All';
-								 $company = isset($_POST['COMPANY']) ? ($_POST['COMPANY']!='') ? $_POST['COMPANY'] : 'All' : 'All';
-								 $category = isset($_POST['CATEGORY']) ? ($_POST['CATEGORY']!='') ? $_POST['CATEGORY'] : 'All' : 'All';
-
-								switch ($searchfor) {
-									case 'bycompany':
-										# code...
-									echo 'Result : '  . $search . ' | Company : ' . $company;
-										break;
-									case 'advancesearch':
-										# code... 
-									echo 'Result : '  . $search . ' | Company : ' . $company . ' | Function : ' . $category; 
-									    break;
-									case 'byfunction':
-										# code... 
-									echo 'Result : '  . $search . ' | Function : ' . $category; 
-									    break;
-
-									case 'bytitle':
-										# code... 
-									echo 'Result : '  . $search; 
-									    break;
-									
-									default:
-										# code...
-										break;
-								}
-
 
                     $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
                     $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
                     $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
                     $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
+                       WHERE j.`COMPANYID`=c.`COMPANYID` ORDER BY DATEPOSTED DESC limit 10";
+                       $mydb->setQuery($sql);
+                       $cur = $mydb->executeQuery();
+                       $maxrow = $mydb->num_rows($cur);
+                       
+                       if ($maxrow > 0) {
+                           # code... 
+                           $res = $mydb->loadResultList();
+                       foreach ($res as $row) { 
+                    ?>
+
+                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
+                        <div class="card-heading">
+                            <div class="career-overview">
+                                <div class="d-flex justify-content-between">
+                                    <div class="job-label py-2 px-4"><?php echo $row->OCCUPATIONTITLE ?></div>
+                                    <div class="salary text-start">Rp. <?= number_format($row->SALARIES,2) ?> <br> per bulan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="logo p-3">
+                                <img src="../assets/upload/company_logo/<?= $row->COMPANYLOGO ?>" alt="">
+                            </div>
+                            <div class="career-jobdesc py-2">
+                                <p class="job-title">
+                                    <?= $row->OCCUPATIONTITLE; ?>
+                                </p>
+                                <p class="job-overview">
+                                    <?= $row->JOBDESCRIPTION; ?>
+                                </p>
+                            </div>
+                            <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $row->JOBID;?>&view=personalinfo" class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                style="border-radius: 10px !important; border-style: none;">Apply</a>
+                        </div>
+                    </div>
+                    <!-- itemss -->
+                        <?php
+                       } }else {
+                        echo '<tr><td>No result found!.....</td></tr>';
+                       }
+                        ?>
+                </div>
+            </div>
+            <!-- end search result section -->
+            <!-- new job section -->
+            <div class="latest-job mt-5">
+                <h2 class="header-title w-50 mb-4" style="color: #183a64;">
+                    Lowongan Kerja Terbaru
+                </h2>
+                <div class="owl-carousel mt-1 px-2">
+                    <?php 
+                $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
                        WHERE j.`COMPANYID`=c.`COMPANYID` AND CATEGORY LIKE '%{$category}%' AND (COMPANYNAME LIKE '%{$search}%' OR (`OCCUPATIONTITLE` LIKE '%{$search}%') OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
                        $mydb->setQuery($sql);
                        $cur = $mydb->executeQuery();
@@ -130,51 +159,16 @@
                                     <?= $row->JOBDESCRIPTION; ?>
                                 </p>
                             </div>
-                            <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
-                                style="border-radius: 10px !important; border-style: none;">Apply</button>
+                            <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $row->JOBID;?>&view=personalinfo" class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                style="border-radius: 10px !important; border-style: none;">Apply</a>
                         </div>
                     </div>
                     <!-- itemss -->
                         <?php
-                       } }
+                       } }else {
+                        echo '<tr><td>No result found!.....</td></tr>';
+                       }
                         ?>
-                </div>
-            </div>
-            <!-- end search result section -->
-            <!-- new job section -->
-            <div class="latest-job mt-5">
-                <h2 class="header-title w-50 mb-4" style="color: #183a64;">
-                    Lowongan Kerja Terbaru
-                </h2>
-                <div class="owl-carousel mt-1 px-2">
-                    <!-- items -->
-                    <div class="card p-4 px-4" style="width: auto; border-radius: 20px">
-                        <div class="card-heading">
-                            <div class="career-overview">
-                                <div class="d-flex justify-content-between">
-                                    <div class="job-label py-2 px-4">UX Design</div>
-                                    <div class="salary text-start">Rp. 5.000.000 <br> per bulan</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="logo p-3">
-                                <img src="../assets/logo/perusahaan.png" alt="">
-                            </div>
-                            <div class="career-jobdesc py-2">
-                                <p class="job-title">
-                                    Web Designer
-                                </p>
-                                <p class="job-overview">
-                                    Kami mencari alumni yang siap untuk terjun langsung dalam proyek nyata di industri .
-                                    . .
-                                </p>
-                            </div>
-                            <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
-                                style="border-radius: 10px !important; border-style: none;">Apply</button>
-                        </div>
-                    </div>
-                    <!-- itemss -->
 
                 </div>
             </div>
@@ -219,7 +213,7 @@
 
 
 								<?php //} }else { -->
-									echo '<tr><td>No result found!.....</td></tr>';
+									// echo '<tr><td>No result found!.....</td></tr>';
 
 								// }?>
 								 
