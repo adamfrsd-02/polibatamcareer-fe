@@ -9,22 +9,24 @@
   </style>
 
   <form class="form-horizontal" method="POST" action="controller.php?action=editprofile">  
-    <div class="container">  
-      <div class="box-header with-border">
-        <h3 class="box-title">Accounts</h3>
+    <div class="container mt-4 mx-auto">  
+      <div class="box-header with-border mt-4">
+        <h3 class="box-title">Accounts Settings</h3>
 
         <!-- /.box-tools -->
       </div> 
       
       <div class="form-group">
         <div class="col-md-7">
-          <div  id="image-container">
-              <img title="profile image"  data-bs-target="#myModal"  data-bs-toggle="modal"  src="<?= web_root; ?>applicant-page/<?= $appl->APPLICANTPHOTO; ?>">
+          <div  id="image-container col">
+            <label class="control-label" for=
+            "FNAME">Profile Picture:</label><br>
+              <img title="profile image"  data-bs-target="#myModal"  data-bs-toggle="modal"  src="<?= web_root; ?>applicant-page/<?= $appl->APPLICANTPHOTO; ?>" style="width: 150px; height: auto; cursor: pointer;">
             </div>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <div class="col-md-7">
           <label class="col-md-4 control-label" for=
             "FNAME">Firstname:</label>
@@ -92,10 +94,7 @@
 
             <div class="col-md-8">
               <div class="input-group">
-                  <span class="input-group-addon"> 
-                   <i class="fa fa-calendar"></i> 
-                  </span>  
-                   <input class="form-control input-sm date_picker" id="BIRTHDATE" name="BIRTHDATE" placeholder="Date of Birth" type="text"    value="<?php echo date_format(date_create($appl->BIRTHDATE),'m/d/Y');?>" required  autocomplete="off">
+                   <input class="form-control input-sm date_picker" id="BIRTHDATE" name="BIRTHDATE" placeholder="Date of Birth" type="date"  value="<?= $appl->BIRTHDATE?>" required  autocomplete="off">
               </div>
             </div>
           </div>
@@ -172,7 +171,7 @@
             "submit"></label>
 
             <div class="col-md-8">
-               <button class="btn btn-primary btn-sm" name="submit" type="submit" ><span class="fa fa-save"></span> Submit </button>
+               <button class="btn btn-primary btn-sm py-3" name="submit" type="submit" ><span class="fa fa-save"></span> Submit </button>
               </div>
           </div>
         </div>  
@@ -182,13 +181,13 @@
   
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" aria-hidden='true'>
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
-            <button class="close" data-dismiss="modal" type=
-            "button">×</button>
+          <h4 class="modal-title" id="myModalLabel">Choose Image</h4>
+            <button class="close" style="background: none; border:none" data-bs-dismiss="modal" type=
+            "button"><i class="fa fa-times"></i></button>
    
-            <h4 class="modal-title" id="myModalLabel">Choose Image.</h4>
         </div>
    
         <form action="controller.php?action=photos" enctype="multipart/form-data" method=
@@ -198,10 +197,10 @@
                     <div class="rows">
                         <div class="col-md-12">
                             <div class="rows">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                   <input name="MAX_FILE_SIZE" type=
                                     "hidden" value="1000000"> <input id=
-                                    "photo" name="photo" type=
+                                    "photo" class="form-control w-100" name="photo" type=
                                     "file">
                                 </div>
    
@@ -213,7 +212,7 @@
             </div>
    
             <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal" type=
+                <button class="btn btn-default" data-bs-dismiss="modal" type=
                 "button">Close</button> <button  class="btn btn-primary"
                 name="savephoto" type="submit">Upload Photo</button>
             </div>

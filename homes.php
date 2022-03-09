@@ -22,7 +22,7 @@
                                 Gunakan identitas mahasiswamu, dan mulailah untuk mencari
                                 kerja melalui platform resmi Politeknik Negeri Batam.
                             </p>
-                            <a class="btn btn-primary pt-3" href="career.html">Lihat Lowongan</a>
+                            <a class="btn btn-primary pt-3 pb-3" href="career.php">Lihat Lowongan</a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -156,7 +156,7 @@
                     </p>
                 </div>
             </div>
-            <div class="owl-carousel mt-1 px-2">
+            <div class="owl-carousel mt-1 px-2 row">
                 <!-- items -->
                 <?php
                 $query = mysqli_query($koneksi, "SELECT JOBID, OCCUPATIONTITLE, SALARIES, JOBDESCRIPTION, CATEGORY, OCCUPATIONTITLE, COMPANYLOGO FROM tbljob LEFT JOIN tblcompany ON tbljob.COMPANYID = tblcompany.COMPANYID");
@@ -168,7 +168,7 @@
                     <div class="card-body">
                         <div class="row mt-0">
                             <div class="col-md-3">
-                                <img src="assets/upload/company_logo/<?= $item['COMPANYLOGO']?>" class="align-middle" />
+                                <img src="assets/upload/company_logo/<?= ($item['COMPANYLOGO']) ? $item['COMPANYLOGO'] : 'perusahaan2.png' ?>" class="align-middle" />
                             </div>
                             <div class="col-md-6">
                                 <h5 class="card-title text-blue">
@@ -188,7 +188,11 @@
                                     per bulan
                                 </p>
                             </div>
-                            <div class="footer-job mt-3 text-center">
+                            
+                        </div>
+                    </div>
+                    <div class="card-footer" style="border: none !important; background: none !important;">
+                    <div class="footer-job mt-3 text-center">
                                 <?php
                                     if(!isset($_SESSION['APPLICANTID'])){
                                 ?>
@@ -202,7 +206,6 @@
 
                                 <?php } ?>
                             </div>
-                        </div>
                     </div>
                 </div>
                 <?php endforeach;?>
