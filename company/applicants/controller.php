@@ -40,6 +40,10 @@ switch ($action) {
 	doAddInterview();
 	break;
 	
+	case 'pass' :
+	doNextPhase();
+	break;
+	
 
 	}
    
@@ -185,7 +189,8 @@ switch ($action) {
 		
  
 		$id = 	$_GET['id'];
-
+		$user = New Applicants();
+		$user->sentmail($_GET['applicantid']);
 		$jobreg = New JobRegistration();
 		 	$jobreg->delete($id);
 	 
@@ -262,39 +267,71 @@ global $mydb;
 		# code...
 		$id = $_POST['JOBREGID'];
 		$applicantid = $_POST['APPLICANTID'];
-
 		$remarks = $_POST['REMARKS'];
-		$sql="UPDATE `tbljobregistration` SET `REMARKS`='{$remarks}',PENDINGAPPLICATION=0,HVIEW=0,DATETIMEAPPROVED=NOW() WHERE `REGISTRATIONID`='{$id}'";
-		$mydb->setQuery($sql);
-		$cur = $mydb->executeQuery();
-		if (!$cur) {
+		if ($remarks != "Failed") {
 			# code...
-			$sql = "SELECT * FROM `tblfeedback` WHERE `REGISTRATIONID`='{$id}'";
+			$sql="UPDATE `tbljobregistration` SET `REMARKS`='{$remarks}',PENDINGAPPLICATION=0,HVIEW=0,DATETIMEAPPROVED=NOW() WHERE `REGISTRATIONID`='{$id}'";
 			$mydb->setQuery($sql);
-			$res = $mydb->loadSingleResult();
-			if (isset($res)) {
+			$cur = $mydb->executeQuery();
+			if (!$cur) {
 				# code...
-				$sql="UPDATE `tblfeedback` SET `FEEDBACK`='{$remarks}' WHERE `REGISTRATIONID`='{$id}'";
+				$sql = "SELECT * FROM `tblfeedback` WHERE `REGISTRATIONID`='{$id}'";
+				$mydb->setQuery($sql);
+				$res = $mydb->loadSingleResult();
+				if (isset($res)) {
+					# code...
+					$sql="UPDATE `tblfeedback` SET `FEEDBACK`='{$remarks}' WHERE `REGISTRATIONID`='{$id}'";
+					$mydb->setQuery($sql);
+					$cur = $mydb->executeQuery();
+				}else{
+					$sql="INSERT INTO `tblfeedback` (`APPLICANTID`, `REGISTRATIONID`,`FEEDBACK`) VALUES ('{$applicantid}','{$id}','{$remarks}')";
+					$mydb->setQuery($sql);
+					$cur = $mydb->executeQuery(); 
+	
+				}
+				$query2 = "SELECT id_progress FROM tblprogress where JOBID = '{$_POST['JOBID']}' AND APPLICANTID = $applicantid";
+				$mydb->setQuery($query2);
+				$res1 = $mydb->loadSingleResult();
+				$query = "SELECT * FROM tbl_user_progress WHERE id_progress = '{$res1->id_progress}'";
+				$mydb->setQuery($query);
+				$res2 = $mydb->loadSingleResult();
+				$step = $res2->progres_step + 2;
+				// echo "<pre>".print_r($res2->progres_step + 2,1)."</pre>";
+				$sql = "UPDATE tbl_user_progress SET appliance_status = 'accepted', progres_step = '{$step}'";
 				$mydb->setQuery($sql);
 				$cur = $mydb->executeQuery();
+				// die();
+				message("Applicant Status is Hired.", "success");
+				
+				redirect("index.php?view=view&id=".$id); 
 			}else{
-				$sql="INSERT INTO `tblfeedback` (`APPLICANTID`, `REGISTRATIONID`,`FEEDBACK`) VALUES ('{$applicantid}','{$id}','{$remarks}')";
-				$mydb->setQuery($sql);
-				$cur = $mydb->executeQuery(); 
-
+				message("cannot be save.", "error");
+				redirect("index.php?view=view&id=".$id); 
 			}
-
-			message("Applicant is calling for an interview.", "success");
-			redirect("index.php?view=view&id=".$id); 
-		}else{
-			message("cannot be save.", "error");
-			redirect("index.php?view=view&id=".$id); 
+		}else {
+			$query1 = "DELETE FROM tbljobregistration WHERE `REGISTRATIONID`='{$id}'";
+			$mydb->setQuery($query1);
+			$mydb->executeQuery();
+			$query2 = "SELECT id_progress FROM tblprogress where JOBID = '{$_POST['JOBID']}' AND APPLICANTID = $applicantid";
+			$mydb->setQuery($query2);
+			$res1 = $mydb->loadSingleResult();
+			$query4 = "DELETE FROM tbl_user_progress WHERE id_progress = '{$res1->id_progress}' && APPLICANTID = $applicantid";
+			$mydb->setQuery($query4);
+			$mydb->executeQuery();
+			$query3 = "DELETE FROM tblprogress WHERE JOBID = '{$_POST['JOBID']}' AND APPLICANTID = $applicantid";
+			$mydb->setQuery($query3);
+			$mydb->executeQuery();
+			$mail = new Applicants();
+			$mail->sentmail($applicantid);
+			message("Employee(s) already Declined!","success");
+			redirect('index.php'); 
 		}
 
 
 	}
 }
 function doAddInterview(){
+	require_once('../../config/conn.php');
 	global $mydb;
 	extract($_POST);
 	if (!isset($date)) {
@@ -311,6 +348,24 @@ function doAddInterview(){
 		echo json_encode(array('status'=>1));
 		// }
 	}
+}
+
+function doNextPhase(){
+	global $mydb;
+	// echo "<pre>".print_r($_GET,1)."</pre>";
+	extract($_GET);
+	$query = "SELECT * FROM tbl_user_progress WHERE id_progress = $id";
+	$mydb->setQuery($query);
+	$result = $mydb->loadSingleResult();
+	$step = $result->progres_step + 1;
+	$queryupdate = "UPDATE tbl_user_progress set progres_step = $step WHERE id_progress = $id";
+	$mydb->setQuery($queryupdate);
+	$queryupdate2 = "DELETE FROM tblinterview WHERE id_progress = $id";
+	$mydb->setQuery($queryupdate2);
+	
+	message("Progress Updated", "success");
+	redirect("index.php"); 
+	// echo "<pre>".print_r($step,1)."</pre>";
 }
 
  

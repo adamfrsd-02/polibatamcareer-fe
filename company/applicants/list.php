@@ -48,16 +48,24 @@
 									  $progress = $mydb->loadSingleResult();
 									  $mydb->setQuery("SELECT progres_step FROM tbl_user_progress WHERE APPLICANTID = $result->APPLICANTID AND id_progress = $progress->id_progress");
 									  $userprogress = $mydb->loadSingleResult();
-									echo '<td>'.$userprogress->progres_step - 1 ."/".count(unserialize($result->PROGRESS_DETAIL)).'</td>';
-									$status = array_values(unserialize($result->PROGRESS_DETAIL))[$userprogress->progres_step - 1];
-									// echo "<pre>".print_r($status,1)."</pre>";
+									  $status = array_values(unserialize($result->PROGRESS_DETAIL))[$userprogress->progres_step - 1];
+									echo '<td>'.$userprogress->progres_step ."/".count(unserialize($result->PROGRESS_DETAIL)).'</td>';
 					  				echo '<td align="center" >';
-									  if ($status = 'interview') {
-										  echo '<a title="interview link" href="index.php?view=interview&id='.$progress->id_progress.'"  class="btn btn-success btn-xs  "><span class="fa fa-info fw-fa"></span> Interview</a>';
-									  }
-									echo '<a title="View" href="index.php?view=view&id='.$result->REGISTRATIONID.'"  class="btn btn-info btn-xs  ">
-					  		             <span class="fa fa-info fw-fa"></span> View</a> 
-					  		             <a title="Remove" href="controller.php?action=delete&id='.$result->REGISTRATIONID.'"  class="btn btn-danger btn-xs  ">
+									 if (!$status == 'hired') {
+										 if ($status == 'interview' && $userprogress->progres_step < count(unserialize($result->PROGRESS_DETAIL))) {
+											 echo '<a title="interview link" href="index.php?view=interview&id='.$progress->id_progress.'"  class="btn btn-success btn-xs  "><span class="fa fa-info fw-fa"></span> Interview</a>';
+											}
+											if ($status == 'medical checkup') {
+												
+												echo '<a title="View" href="index.php?view=view&id='.$result->REGISTRATIONID.'"  class="btn btn-info btn-xs  ">
+												<span class="fa fa-info fw-fa"></span> Medical Checkup Status Update</a> ';
+											}else {
+												echo '<a title="View" href="index.php?view=view&id='.$result->REGISTRATIONID.'"  class="btn btn-info btn-xs  ">
+												<span class="fa fa-info fw-fa"></span> View</a>';
+											}
+										} 
+									echo ' 
+					  		             <a title="Remove" href="controller.php?action=delete&id='.$result->REGISTRATIONID.'&applicantid='.$appl->APPLICANTID.'"  class="btn btn-danger btn-xs  ">
 					  		             <span class="fa fa-trash-o fw-fa"></span> Remove</a> 
 					  					 </td>';
 							  		echo '</tr>';

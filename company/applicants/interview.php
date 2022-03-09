@@ -36,8 +36,11 @@ global $mydb;
     $diff = $start->diff($end);
     $hourdiff = round((strtotime($res->INTERVIEWDATE) - strtotime(date("Y-m-d H:i:s")))/3600, 1);
     // echo "<pre>".print_r(,1)."</pre>";
+if ($hourdiff > 0 ) { ?>
+    <h5>Countdown: <?= $diff->d." Days ".$diff->h." Hours ".$diff->i." Minutes ".$diff->s." Seconds "; ?></h5>
+<?php }
 ?>
-<h5>Countdown: <?= $diff->d." Days ".$diff->h." Hours ".$diff->i." Minutes ".$diff->s." Seconds "; ?></h5>
+
 <h4>Applicant will get noticed right after interview link form submitted</h4>
 <?php
     if($hourdiff <= 2){
@@ -59,6 +62,11 @@ global $mydb;
            <?php } else { ?>
                 <a href="index.php" class="btn btn-warning">Back</a>
           <?php }
+        ?>
+        <?php
+            if($hourdiff <= 0 && $res->INTERVIEWLINK) { ?>
+                <a href="controller.php?action=pass&id=<?= $_GET['id']; ?>" class="btn btn-primary" name="next">pass the interview stage</a>
+        <?php    }
         ?>
     </div>
 

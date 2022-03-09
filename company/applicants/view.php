@@ -70,6 +70,7 @@ global $mydb;
 	<h3><?php echo $job->OCCUPATIONTITLE; ?></h3>
 	<input type="hidden" name="JOBREGID" value="<?php echo $jobreg->REGISTRATIONID;?>">
 	<input type="hidden" name="APPLICANTID" value="<?php echo $appl->APPLICANTID;?>">
+	<input type="hidden" name="JOBID" value="<?php echo $job->JOBID;?>">
 
 	<div class="col-sm-6">
 		<ul>
@@ -129,8 +130,23 @@ global $mydb;
 	</div> 
 
 	<div class="col-sm-12">
-		<p>Feedback</p>
-		<textarea class="input-group" name="REMARKS"><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></textarea>
+		<?php
+			$mydb->setQuery("SELECT id_progress FROM tblprogress WHERE APPLICANTID= $appl->APPLICANTID AND COMPANYID = $job->COMPANYID AND JOBID = $job->JOBID ");
+			$progress = $mydb->loadSingleResult();
+			$mydb->setQuery("SELECT progres_step FROM tbl_user_progress WHERE APPLICANTID = $appl->APPLICANTID AND id_progress = $progress->id_progress");
+			$userprogress = $mydb->loadSingleResult();
+			$status = array_values(unserialize($job->PROGRESS_DETAIL))[$userprogress->progres_step - 1];
+		if ($status == "medical checkup") { ?>
+		<p>Medical Checkup Status</p>
+		<select class="form-input" name="REMARKS" id="REMARKS">
+			<option value="Success" <?= ($jobreg->REMARKS == "Success") ? "Selected" : "" ?>>Hire</option>
+			<option value="Pending" <?= ($jobreg->REMARKS == "Pending") ? "Selected" : "" ?>>Pending</option>
+			<option value="Failed" <?= ($jobreg->REMARKS == "Failed") ? "Selected" : "" ?>>Failed</option>
+		</select>
+		<?php }
+		?>
+
+		<!-- <textarea class="input-group" name="REMARKS"><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></textarea> -->
 	</div>
 	<div class="col-sm-12  submitbutton "> 
 		<button type="submit" name="submit" class="btn btn-primary">Send</button>

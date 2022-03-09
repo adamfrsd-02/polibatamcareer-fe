@@ -41,6 +41,7 @@ switch ($action) {
 			message("All field is required!","error");
 			redirect('index.php?view=add');
 		}else{	
+			$PROGRESS_DETAILS = array_push($_POST['assignment'],"Medical Checkup","Hired");
 			$job = New Jobs();
 			$job->COMPANYID							= $_POST['COMPANYID']; 
 			$job->CATEGORY							= $_POST['CATEGORY']; 
@@ -53,7 +54,7 @@ switch ($action) {
 			$job->PREFEREDSEX						= $_POST['PREFEREDSEX'];
 			$job->SECTOR_VACANCY					= $_POST['SECTOR_VACANCY']; 
 			$job->DATEPOSTED						= date('Y-m-d H:i');
-			$job->PROGRESS_DETAIL					= serialize($_POST['assignment']);
+			$job->PROGRESS_DETAIL					= serialize($PROGRESS_DETAILS);
 			$job->create();
 			message("New Job Vacancy created successfully!", "success");
 			redirect("index.php?view=assesment");

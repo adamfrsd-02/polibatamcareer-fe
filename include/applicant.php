@@ -171,6 +171,19 @@ class Applicants {
 		  
 			if(!$mydb->setQuery($sql)) return false; 	
 	
+	}
+	public function sentmail($id='') {
+		global $mydb;
+		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			Where APPLICANTID= '{$id}' LIMIT 1");
+		$cur = $mydb->loadSingleResult();
+		$to = "putraantowi11@gmail.com";  
+		$subject = "Thank You For Applying In Our Website";  
+		$message = "hello, sorry you can't get this job yet due to a discrepancy with the company requirements needed for this job";  
+		$from = "test@gmail.com";  
+		$headers = "From: $from";  
+		mail($to,$subject,$message,$headers);  
+		return false;
 	}	
 
 
