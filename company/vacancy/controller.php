@@ -55,20 +55,8 @@ switch ($action) {
 			$job->DATEPOSTED						= date('Y-m-d H:i');
 			$job->PROGRESS_DETAIL					= serialize($_POST['assignment']);
 			$job->create();
+			message("New Job Vacancy created successfully!", "success");
 			redirect("index.php?view=assesment");
-			
-			// $assignment = $_POST['assignment'];
-			// $list = implode(" ", $assignment);
-			// $assesment = substr_count($list,"assesment");
-			// $interview = substr_count($list,"interview");
-			// $MC = substr_count($list,"mc");
-			// $_SESSION['assesment'] = $assesment;
-			// $_SESSION['interview'] = $interview;
-			// $_SESSION['medical_checkup'] = $MC;
-
-			// echo "<pre>".print_r($assignment,1)."</pre>";
-			// echo "<pre>".print_r($_POST,1)."</pre>";
-			// message("New Job Vacancy created successfully!", "success");
 			
 		}
 		}

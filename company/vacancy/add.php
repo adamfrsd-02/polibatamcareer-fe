@@ -157,7 +157,6 @@
           <select name="assignment[]">
             <option value="assesment">Online Assesment</option>
             <option value="interview">Interview</option>
-            <option value="mc">Medical Checkup</option>
           </select>
         </div>
         <input type="hidden" value="1" id="total_chq">
@@ -192,7 +191,7 @@
     var newid = parseInt(id) + 1;
     var new_input =
       '<div id="children-' + newid +
-      '"><select  class="mt-5" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option><option value="mc">Medical Checkup</option></select><button type="button" onclick="remove(' +
+      '"><select  class="mt-5" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option></select><button type="button" onclick="remove(' +
       newid + ')"> - </button><br></div>';
     // $('#new_chq').append(new_input);
     $(new_input).insertAfter("#children-" + id)

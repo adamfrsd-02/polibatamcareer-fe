@@ -3,7 +3,7 @@ require_once("../../include/initialize.php");
  if(!isset($_SESSION['COMPANY_USERID'])){
 	redirect(web_root."company/index.php");
 }
-
+date_default_timezone_set('Asia/Jakarta');
 $view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
  $title="Applicants"; 
  $header=$view; 
@@ -21,6 +21,9 @@ switch ($view) {
 		break;
     case 'view' :
 		$content    = 'view.php';		
+		break;
+	case 'interview' :
+		$content 	= 'interview.php';
 		break;
 
 	default :

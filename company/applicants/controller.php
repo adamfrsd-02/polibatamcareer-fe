@@ -35,6 +35,10 @@ switch ($action) {
 	case 'checkid' :
 	Check_StudentID();
 	break;
+
+	case 'interviewadd' :
+	doAddInterview();
+	break;
 	
 
 	}
@@ -288,6 +292,24 @@ global $mydb;
 		}
 
 
+	}
+}
+function doAddInterview(){
+	global $mydb;
+	extract($_POST);
+	if (!isset($date)) {
+		$query = "UPDATE tblinterview SET INTERVIEWLINK = '{$links}' WHERE id_progress = '{$id}'";
+		$mydb->setQuery($query);
+		// if () {
+		echo json_encode(array('status'=>1));
+		// }
+	} else{
+		$datenow = date("Y-m-d H:i:s", strtotime($date));
+		$query = "INSERT INTO tblinterview values ('','$id','','$datenow','')";
+		$mydb->setQuery($query);
+		// if () {
+		echo json_encode(array('status'=>1));
+		// }
 	}
 }
 
