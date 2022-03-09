@@ -138,7 +138,7 @@ global $mydb;
 			$status = array_values(unserialize($job->PROGRESS_DETAIL))[$userprogress->progres_step - 1];
 		if ($status == "medical checkup") { ?>
 		<p>Medical Checkup Status</p>
-		<select class="form-input" name="REMARKS" id="REMARKS">
+		<select class="form-control" name="REMARKS" id="REMARKS">
 			<option value="Success" <?= ($jobreg->REMARKS == "Success") ? "Selected" : "" ?>>Hire</option>
 			<option value="Pending" <?= ($jobreg->REMARKS == "Pending") ? "Selected" : "" ?>>Pending</option>
 			<option value="Failed" <?= ($jobreg->REMARKS == "Failed") ? "Selected" : "" ?>>Failed</option>
