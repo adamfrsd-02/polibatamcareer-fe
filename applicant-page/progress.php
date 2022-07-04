@@ -22,10 +22,9 @@
 
             <?php
 				foreach ($curs as $key ) :
-					$sql = "SELECT id_progress,detail_progress,JOBID FROM tblprogress where APPLICANTID = '$applicantid'  ";
+					$sql = "SELECT id_progress,detail_progress FROM tblprogress where APPLICANTID = '$applicantid' AND COMPANYID = '$key->COMPANYID'  AND JOBID = $key->JOBID";
 					$mydb->setQuery($sql);
 					$cur = $mydb->loadResultList();
-					// echo "<pre>".print_r($cur,1)."</pre>";
 					if ($cur) :
 					$i=1;
 					$progress = 1;
@@ -42,13 +41,14 @@
 					$mydb->setQuery($queryjobreg);
 					$resjobreg = $mydb->loadSingleResult();
 					foreach ($cur as $details ) {
+                        // echo "<pre>".print_r($cur,1)."</pre>";
 						$progid = $details->id_progress;
 						$detail = unserialize($details->detail_progress);
+                        $queryprogress = "SELECT progres_step FROM tbl_user_progress where APPLICANTID = $applicantid AND id_progress = $progid";
+                        $mydb->setQuery($queryprogress);
+                        $resprogress = $mydb->loadSingleResult();
+                        $detail = array_values($detail);
 					}
-					$queryprogress = "SELECT progres_step FROM tbl_user_progress where APPLICANTID = $applicantid AND id_progress = $progid";
-					$mydb->setQuery($queryprogress);
-					$resprogress = $mydb->loadSingleResult();
-					$detail = array_values($detail);
 					// echo "<pre>".print_r($detail,1)."</pre>";
 
             ?>
