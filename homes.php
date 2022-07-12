@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <a href="partner.html" class="btn btn-secondary text-center mt-auto pt-3">Lihat Selengkapnya</a>
+                    <a href="partner.php" class="btn btn-secondary text-center mt-auto pt-3">Lihat Selengkapnya</a>
                 </div>
             </center>
         </div>

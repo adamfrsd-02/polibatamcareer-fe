@@ -225,3 +225,23 @@ body {
 #progress::-webkit-progress-bar {
   background-color: #64d073;
 }
+.single-job-items {
+  padding: 36px 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -webkit-transition: .4s;
+  -moz-transition: .4s;
+  -o-transition: .4s;
+  transition: .4s;
+  margin-bottom: 30px;
+}
+.single-job-items .job-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.single-job-items img {
+  overflow: hidden;
+  float: left;
+  margin-right: 32px;
+}

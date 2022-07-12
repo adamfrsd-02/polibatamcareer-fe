@@ -44,7 +44,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img width="190" height="45" src="assets/logo/logopolcar.png" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -58,16 +58,16 @@
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#company">Our Partner</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#company">Our Partner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#career">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#career">Career</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#contact">Contact Us</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#contact">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#faq">FAQ</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#faq">FAQ</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
               <a
@@ -206,10 +206,10 @@
                         Pekerjaan</button>
                 </form>
             </div> -->
-            <hr>
+            <!-- <hr> -->
             <!-- end search section -->
             <!-- search result section -->
-                <div class="row">
+                <!-- <div class="row"> -->
                 <!-- <div class="header-subtitle py-3">
                     <span class="header-subtitle">Kami menemukan <b class="highlighted">3 Lowongan Kerja</b> yang
                         sesuai</span>
@@ -245,64 +245,61 @@
                     <!-- itemss -
 
                 </div> -->
-            </div>
+            <!-- </div> -->
             <!-- end search result section -->
             <!-- new job section -->
-            <div class="latest-job ">
-                <!-- <h2 class="header-title w-50 mb-4" style="color: #183a64;">
-                    Lowongan Kerja Terbaru
-                </h2> -->
-                <div class="row mt-1 px-2">
-                    <!-- items -->
-                    <?php
-                        include 'config/conn.php';
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-4">
 
-                        $query = "SELECT * FROM tbljob
-                        INNER JOIN tblcompany ON tbljob.COMPANYID=tblcompany.COMPANYID ORDER BY tbljob.DATEPOSTED DESC";
-                        $res = $koneksi->query($query);
-
-                        foreach($res as $row) {
-                    ?>
-                    <div class="col-md-4 mb-4">
-                    <div class="card p-4 px-4" style="width: auto; height:100%; border-radius: 20px">
-                        <div class="card-heading">
-                            <div class="career-overview">
-                                <div class="d-flex justify-content-between">
-                                    <div class="job-label py-2 px-4"><?= $row['CATEGORY']?></div>
-                                    <div class="salary text-start">Rp. <?= number_format($row['SALARIES'],2) ?> <br> per bulan</div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-8">
+                    <div class="latest-job ">
+                        <?php
+                            include 'config/conn.php';
+    
+                            $query = "SELECT * FROM tbljob
+                            INNER JOIN tblcompany ON tbljob.COMPANYID=tblcompany.COMPANYID ORDER BY tbljob.DATEPOSTED DESC";
+                            $res = $koneksi->query($query);
+    
+                            foreach($res as $row) {
+                        ?>
+                        <div class="row mt-1 px-2">
+                            <!-- items -->
+                            <div class=" mb-4">
+                                <div class="single-job-items" style="">
+                                    <div class="job-items">
+                                        <div class="logo p-3">
+                                            <center>
+                                            <img class="border border-primary rounded-circle" width="140" height="140" src="assets/upload/company_logo/<?= ($row['COMPANYLOGO']) ? $row['COMPANYLOGO'] : 'perusahaan2.png' ?>" alt="">
+                                            </center>
+                                        </div>
+                                        <div class="career-overview">
+                                            <div class="career-jobdesc py-2">
+                                                <h4>
+                                                    <?= $row['OCCUPATIONTITLE']?>
+                                                </h4>
+                                                <?= $row['COMPANYNAME']?>
+                                                <?= $row['COMPANYADDRESS']?>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="job-label py-2 px-4"><?= $row['CATEGORY']?></div>
+                                                <div class="salary text-start">Rp. <?= number_format($row['SALARIES'],2) ?> <br> per bulan</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer" style="border: none !important; background: none !important;">
+                                    <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
+                                            style="border-radius: 10px !important; border-style: none;" data-bs-target="#exampleModal" data-bs-toggle="modal">See Details</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body h-100">
-                            <div class="logo p-3">
-                                <center>
-                                <img src="assets/upload/company_logo/<?= ($row['COMPANYLOGO']) ? $row['COMPANYLOGO'] : 'perusahaan2.png' ?>" alt="">
-                                </center>
-                            </div>
-                            <div class="career-jobdesc py-2">
-                                <h4>
-                                    <?= $row['COMPANYNAME']?>
-                                </h4>
-                                <p class="job-title">
-                                    <?= $row['OCCUPATIONTITLE']?>
-                                </p>
-                                <p class="job-overview">
-                                   <?= $row['JOBDESCRIPTION']?>
-                                </p>
-                            </div>
-                            
-                        </div>
-                        <div class="card-footer" style="border: none !important; background: none !important;">
-                        <button class="px-5 py-3 rounded w-100 text-white bg-myorange"
-                                style="border-radius: 10px !important; border-style: none;" data-bs-target="#exampleModal" data-bs-toggle="modal">Apply</button>
-                        </div>
+                        <?php
+                            }
+                        ?>
+                        <!-- itemss -->
+    
                     </div>
-                    </div>
-                    <?php
-                        }
-                    ?>
-                    <!-- itemss -->
-
                 </div>
             </div>
             <!-- end new job section -->
@@ -311,157 +308,6 @@
     <!-- end career section -->
 
 
-    <!-- contact us -->
-    <div class="contact-us mt-5 pb-5 mb-4" id="contact">
-        <div class="container py-4">
-            <center>
-                <div class="header">
-                    <p class="header-title">Butuh Bantuan ?</p>
-                    <p class="header-desc">
-                        Silahkan hubungi kami lebih lanjut melalui <br />
-                        beberapa media informasi kami.
-                    </p>
-                </div>
-            </center>
-            <div class="body mt-5">
-                <div class="row">
-                    <div class="col-md-5 p-3 px-5 py-5 rounded-start" style="background-color: #183a64;">
-                        <div class="content">
-                            <div class="head">
-                                <p class="header-title text-white">Kontak Kami</p>
-                                <p class="text-white" style="margin-top: -10px">
-                                    Isi form yang tersedia dengan data dan informasi yang tepat
-                                </p>
-                            </div>
-                            <div class="body mt-5">
-                                <div class="phone">
-                                    <img src="assets/icons/phone.png" width="30" height="30" alt="" />
-                                    <span class="text-white ms-3">0891-2718-281</span>
-                                </div>
-                                <div class="messages mt-4">
-                                    <img src="assets/icons/message.png" width="30" height="30" alt="" />
-                                    <span class="text-white ms-3">admin@polibatam.ac.id</span>
-                                </div>
-                                <div class="place mt-4 d-flex">
-                                    <img src="assets/icons/bookmark.png" width="30" height="35" alt="" />
-                                    <span class="text-white ms-3 text-start">Batam Centre, Jl. Ahmad Yani, Tlk. Tering,
-                                        Kec.
-                                        Batam Kota,
-                                        Kota Batam, Kepulauan Riau 29461</span>
-                                </div>
-                            </div>
-                            <div class="footer mt-5">
-                                <div class="d-flex justify-content-between">
-                                    <img src="assets/icons/facebook.png" alt="">
-                                    <img src="assets/icons/Twitter.png" alt="">
-                                    <img src="assets/icons/Instagram.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 p-5 rounded-end" style="background-color: white">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form3Example1m">First name</label>
-                                        <input type="text" id="form3Example1m" class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form3Example1n">Last name</label>
-                                        <input type="text" id="form3Example1n" class="form-control form-control-lg" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example8">Jenis Instansi</label>
-                                <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                            </div>
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example8">Nama Instansi</label>
-                                <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                            </div>
-
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example8">Pertanyaan / Pesan</label>
-                                <textarea type="text" id="form3Example8"
-                                    class="form-control form-control-lg"></textarea>
-                            </div>
-
-                            <div class="pt-3 mb-3" style="margin-top: -5px">
-                                <button type="button" class="btn btn-secondary btn-lg ms-2 fs-6 text-white"
-                                    style="width: 40%; height: 50px;">
-                                    Kirim Pesan
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end contact us -->
-    <div class="faq" id="faq">
-        <div class="container mt-5 mb-5">
-            <center>
-                <div class="header">
-                    <p class="header-title">Frequently Asked Question</p>
-                    <p class="header-desc mb-4">
-                        Berikut adalah pertanyaan yang sering ditanyakan
-                    </p>
-                </div>
-            </center>
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Apakah Polibatam Career Gratis ?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>Polibatam Career sepenuhnya bebas biaya !</strong> Platform ini ditujukan untuk
-                            alumni yang ingin mencari kerjaan tanpa dipungut biaya sedikitpun
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Apakah Aman ?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>Pasti !</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Apakah Dijamin Akan Mendapatkan Pekerjaan ?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Daftar aja dulu
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <hr>
     <!-- footer -->
     <div class="container">

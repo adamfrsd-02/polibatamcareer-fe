@@ -57,7 +57,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img width="190" height="45" src="assets/logo/logopolcar.png" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -71,16 +71,16 @@
                         <a class="nav-link text-semibold text-blue" aria-current="page" href="<?php echo web_root; ?>index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#company">Our Partner</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#company">Our Partner</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#career">Career</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#career">Career</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#contact">Contact Us</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#contact">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-semibold text-blue" href="#faq">FAQ</a>
+                        <a class="nav-link text-semibold text-blue" href="index.php#faq">FAQ</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
               <a
