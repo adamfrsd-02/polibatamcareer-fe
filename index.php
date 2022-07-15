@@ -63,7 +63,15 @@ switch ($view) {
 	case 'search-jobtitle' :
         $title='Search by Job Title';	
 		$content='searchbytitle.php';		
-		break;						
+		break;	
+	case 'career' :
+		$title='Search all job';	
+		$content='career.php';		
+		break;	
+	case 'partner' :
+		$title='All Partner';	
+		$content='partner.php';		
+		break;					
 	default :
 	    $active_home='active';
 	    $title="Home";	

@@ -22,7 +22,7 @@
                                 Gunakan identitas mahasiswamu, dan mulailah untuk mencari
                                 kerja melalui platform resmi Politeknik Negeri Batam.
                             </p>
-                            <a class="btn btn-primary pt-3 pb-3" href="career.php">Lihat Lowongan</a>
+                            <a class="btn btn-primary pt-3 pb-3" href="index.php?q=career">Lihat Lowongan</a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <a href="partner.php" class="btn btn-secondary text-center mt-auto pt-3">Lihat Selengkapnya</a>
+                    <a href="index.php?q=partner" class="btn btn-secondary text-center mt-auto pt-3">Lihat Selengkapnya</a>
                 </div>
             </center>
         </div>
@@ -196,13 +196,13 @@
                                 <?php
                                     if(!isset($_SESSION['APPLICANTID'])){
                                 ?>
-                                <button class="btn btn-primary w-100 py-3 px-2"" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    APPLY
+                                <button class="btn btn-primary w-100 py-3 px-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    See Details
                                 </button>
                                 <?php
                                     }else{ 
                                 ?>
-                                <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary w-100 py-3 px-2">Apply</a>
+                                <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $item['JOBID'];?>&view=personalinfo" class="btn btn-primary w-100 py-3 px-2"> See Details</a>
 
                                 <?php } ?>
                             </div>
@@ -213,7 +213,7 @@
             <div class="container">
                 <center>
                     <div class="footer">
-                        <button class="btn btn-secondary text-center mt-5" onclick="location.href='career.php'">Lowongan
+                        <button class="btn btn-secondary text-center mt-5" onclick="location.href='index.php?q=career'">Lowongan
                             Lainnya</button>
                     </div>
                 </center>

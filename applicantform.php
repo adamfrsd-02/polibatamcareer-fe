@@ -169,7 +169,7 @@ if (!isset($_SESSION['APPLICANTID'])) {
                         </div>
                        <div class="form-group">
                         <div class="col-md-12 mt-3"> 
-                            <button class="btn btn-primary pull-right py-2" name="submit" type="submit" >Submit <span class="fa fa-arrow-right"></span></button>
+                            <button class="btn btn-primary pull-right py-2" name="submit" type="submit" >Apply <span class="fa fa-arrow-right"></span></button>
                             <a href="index.php" class="btn btn-warning text-white"><i class="fa fa-arrow-left"></i>&nbsp;<strong>Back</strong></a> 
                         </div>
                        </div> 
