@@ -1,5 +1,6 @@
 <?php
     include 'config/conn.php';
+    session_start();
 extract($_GET);
 $result = array();
 $count = 0;
@@ -44,7 +45,7 @@ if ($result) {
         style="border-radius: 10px !important; border-style: none;" data-bs-target="#exampleModal" data-bs-toggle="modal">See Details</button>';
                 }else{ 
 
-           $button = ' <a href="'.web_root.'index.php?q=apply&job='.$row["JOBID"].'&view=personalinfo" class="btn px-2 py-3 rounded w-100 text-white bg-myorange"> See Details</a>';
+           $button = ' <a href="index.php?q=apply&job='.$row["JOBID"].'&view=personalinfo" class="btn px-2 py-3 rounded w-100 text-white bg-myorange"> See Details</a>';
 
         } 
         $logo = ($row["COMPANYLOGO"]) ? $row["COMPANYLOGO"] : "logopolcareer.png";

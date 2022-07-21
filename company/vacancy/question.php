@@ -41,12 +41,16 @@
         
         $list = implode(" ", $listarr);
         $assesment = substr_count($list,"assesment");
+        $quisioner = substr_count($list,"quisioner");
         $id = $rows['JOBID'];
     }
     $query2 = $koneksi->query("SELECT COUNT(ASSESMENTLISTID) as total FROM tblassesmentlist WHERE COMPANYID = '".$_SESSION['COMPANY_USERID']."' AND JOBID = '".$id."'")->fetch_array();
     if ($query2['total'] >= $assesment) {
         echo '<a href="index.php?view=vacancy" class="btn btn-primary float-end">FINISH</a>';
-    }else {
+    } else if ($quisioner) {
+        echo '<a href="index.php?view=quisioner" class="btn btn-primary float-end">Next Step</a>';
+    }
+    else {
         echo '<a href="index.php?view=assesment" class="btn btn-primary float-end">NEXT STEP</a>';
     }
 

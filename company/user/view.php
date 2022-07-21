@@ -121,7 +121,7 @@ if(!$_SESSION['COMPANY_ROLE']=='Administrator'){
                         <div class="col-md-12">
                           <div class="rows">
                             <div class="col-md-8">
-                            <input class="mealid" type="hidden" name="mealid" id="mealid" value="">
+                            <input class="mealid" type="hidden" name="id" id="id" value="<?= $USERID; ?>">
                               <input name="MAX_FILE_SIZE" type=
                               "hidden" value="1000000"> <input id=
                               "photo" name="photo" type=

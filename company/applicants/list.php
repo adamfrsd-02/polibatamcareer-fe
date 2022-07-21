@@ -51,7 +51,8 @@
 									  $status = array_values(unserialize($result->PROGRESS_DETAIL))[$userprogress->progres_step - 1];
 									echo '<td>'.$userprogress->progres_step ."/".count(unserialize($result->PROGRESS_DETAIL)).'</td>';
 					  				echo '<td align="center" >';
-									 if (!$status == 'hired') {
+									  if ($status != 'hired') {
+										//  echo "<pre>".print_r($status,1)."</pre>";
 										 if ($status == 'interview' && $userprogress->progres_step < count(unserialize($result->PROGRESS_DETAIL))) {
 											 echo '<a title="interview link" href="index.php?view=interview&id='.$progress->id_progress.'"  class="btn btn-success btn-xs  "><span class="fa fa-info fw-fa"></span> Interview</a>';
 											}

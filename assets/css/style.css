@@ -245,3 +245,11 @@ body {
   float: left;
   margin-right: 32px;
 }
+.justify-between{
+  display: flex;
+  justify-content: space-between;
+}
+.flex-center {
+  display: flex;
+    align-items: center;
+}

@@ -27,20 +27,6 @@
         <input type="hidden" name="COMPANYID" value="<?= $id ?>">
         <input type="text" class="form-control input-sm" id="COMPANYNAME" readonly value="<?= $res->COMPANYNAME?>"
           name="COMPANYNAME">
-        <!-- <select class="form-control input-sm" id="COMPANYID" name="COMPANYID">
-                          <option value="None">Select</option>
-                          <?php 
-                          // $id = $_SESSION["COMPANY_USERID"];
-                          //   $sql ="Select * From tblcompany where COMPANYID = $id";
-                          //   $mydb->setQuery($sql);
-                          //   $res  = $mydb->loadResultList();
-                          //   foreach ($res as $row) {
-                          //     # code...
-                          //     echo '<option value='.$row->COMPANYID.'>'.$row->COMPANYNAME.' </option>';
-                          //   }
-
-                          ?>
-                        </select> -->
 
       </div>
     </div>
@@ -157,6 +143,7 @@
           <select name="assignment[]" class="form-control">
             <option value="assesment">Online Assesment</option>
             <option value="interview">Interview</option>
+            <option value="quisioner">Quisioner</option>
           </select>
           <button type="button"  style="margin-top: 10px; float: right; border: none;" onclick="add()" class="add mt-2 col-md-4 btn btn-success" id="plus"><i class="fa fa-plus-circle"></i> Add Process</button>
         </div>
@@ -191,7 +178,7 @@
     var newid = parseInt(id) + 1;
     var new_input =
       '<div id="children-' + newid +
-      '"><select  class="form-control col-md-12" style="margin-top: 10px" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option></select><button class="btn btn-warning float-right col-md-4" style="margin-top: 10px; float: right; border: none;" type="button" onclick="remove(' +
+      '"><select  class="form-control col-md-12" style="margin-top: 10px" name="assignment[]"><option value="assesment">Online Assesment</option><option value="interview">Interview</option><option value="quisioner">Quisioner</option></select><button class="btn btn-warning float-right col-md-4" style="margin-top: 10px; float: right; border: none;" type="button" onclick="remove(' +
       newid + ')"><i class="fa fa-times-circle"></i> Remove </button><br></div>';
     // $('#new_chq').append(new_input);
     $(new_input).insertAfter("#children-" + id)

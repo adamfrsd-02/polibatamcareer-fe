@@ -25,6 +25,8 @@
 					$sql = "SELECT id_progress,detail_progress FROM tblprogress where APPLICANTID = '$applicantid' AND COMPANYID = '$key->COMPANYID'  AND JOBID = $key->JOBID";
 					$mydb->setQuery($sql);
 					$cur = $mydb->loadResultList();
+                    $jobid = $key->JOBID;
+                    $companyid = $key->COMPANYID;
 					if ($cur) :
 					$i=1;
 					$progress = 1;
@@ -63,9 +65,6 @@
                         <div class="company-profile">
                             <div class="row">
                                 <div class="col-md-6">
-									<?php
-										
-									?>
                                     <p class="header-title"><?= $resjob->OCCUPATIONTITLE; ?></p>
                                     <p class="header-subtitle" style="margin-top: -12px;"><?= $rescompany->COMPANYNAME; ?></p>
                                 </div>
@@ -80,7 +79,6 @@
 											}else {
 												$datadetails = $resdet->ASSESMENTID;
 											}
-										//    echo "<pre>".print_r($datadetails,1)."</pre>";
 									?>
 									<a href="index.php?view=assesment&id=<?= $datadetails; ?>&progress=<?= $progid; ?>" class="btn btn-outline-blue px-5 float-end">Detail</a>
 										<!-- <button class="btn btn-outline-blue px-5 float-end">Detail</button> -->
@@ -136,12 +134,78 @@
                                 ?>
 
                             </div>
-                            <div class="ps-3"
-                                style="margin-top: -10px; display: flex; flex-direction: row; align-items: baseline;">
-                                <p class="header-subtitle">Sedang Tahap </p>
+                            <div class="ps-3 justify-between" style="margin-top: -10px; display: flex; flex-direction: row; align-items: baseline;">
+                            <div class="flex-center">
+                                <?php
+                                    if ($tahap == 'hired') {
+                                        $subtitle = 'Anda Sudah Di';
+                                    }else {
+                                        $subtitle = 'Sedang Tahap';
+                                    }
+                                ?>
+                               <p class="header-subtitle"><?= $subtitle; ?></p>
                                 <p class="ms-2"><b><?php
                                     echo $tahap;
                                 ?></b></p>
+                            </div>
+                                <?php
+                                // echo "<pre>".print_r($companyid,1)."</pre>";
+                                if ($tahap == 'interview') {
+                                    $queryinterview = "SELECT * FROM tblinterview WHERE id_progress = $progid";
+                                    $mydb->setQuery($queryinterview);
+                                    $resinterview = $mydb->loadSingleResult();
+                                    if ($resinterview) {
+                                        # code...
+                                    
+                                ?>
+                                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#form_modal<?php echo $resinterview->INTERVIEWID;?>">Interview Link</button>
+                                    <div class="modal fade" id="form_modal<?php echo $resinterview->INTERVIEWID;?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Link Interview</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-8">
+                                                        Interview akan dilakukan pada : <?= $resinterview->INTERVIEWDATE; ?><br>
+                                                        link interview = <a href="<?= $resinterview->INTERVIEWLINK; ?>"><?= $resinterview->INTERVIEWLINK; ?></a>
+                                                    </div>
+                                                </div>
+                                                <div style="clear:both;"></div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                    }else {
+                                    ?>
+                                    Interview Belum Dijadwalkan
+                                    <?php
+                                    }
+                                }else if($tahap == 'quisioner') {
+                                    $queryquis = "SELECT * FROM tblquisionerlist WHERE JOBID = $jobid AND COMPANYID = $companyid";
+                                    $mydb->setQuery($queryquis);
+                                    $resquis = $mydb->loadSingleResult();
+                                    if ($resquis) {
+                                        
+                                    $queryresult = "SELECT * FROM tblquisionerresult WHERE APPLICANTID = $applicantid AND QUISIONERLISTID = $resquis->QUISIONERLISTID";
+                                    $mydb->setQuery($queryresult);
+                                    $resultq = $mydb->loadSingleResult();
+                                        if ($resultq) {?>
+                                        Anda Sudah Mengisi Quisioner
+                                        <?php
+                                        }else {
+                                ?>
+                                    <a href="index.php?view=quisioner&id=<?=$resquis->QUISIONERLISTID;?>&progress=<?= $progid; ?>">Isi Kuisioner Anda</a>
+                                    
+                                <?php
+                                        }
+                                    }
+                                }
+                                    ?>
 
                             </div>
                         </div>

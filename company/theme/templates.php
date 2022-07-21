@@ -118,7 +118,7 @@
                                                 <div class="col-md-12">
                                                     <div class="rows">
                                                         <div class="col-md-8"> 
-                                                            <input class="mealid" type="hidden" name="mealid" id="mealid" value="">
+                                                            <input class="mealid" type="hidden" name="id" id="id" value="<?= $_SESSION['COMPANY_USERID']; ?>">
                                                               <input name="MAX_FILE_SIZE" type="hidden" 
                                                               value="1000000"> 
                                                               <input id="photo" name="photo" type="file">
@@ -178,6 +178,12 @@
         <li class="<?php echo (currentpage() == 'assesment') ? "active" : false;?>" >
           <a href="<?php echo web_root ;?>company/assesment/">
             <i class="fa fa-book"></i> <span>Assesment List</span> 
+          </a>
+        </li>
+        
+        <li class="<?php echo (currentpage() == 'quisioner') ? "active" : false;?>" >
+          <a href="<?php echo web_root ;?>company/quisioner/">
+            <i class="fa fa-book"></i> <span>Quisinoner List</span> 
           </a>
         </li>
        <!--  <li class="treeview">

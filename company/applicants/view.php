@@ -144,9 +144,44 @@ global $mydb;
 			<option value="Failed" <?= ($jobreg->REMARKS == "Failed") ? "Selected" : "" ?>>Failed</option>
 		</select>
 		<?php }
+		else if($status == 'quisioner') { ?>
+			<p>Quisioner Answer : </p>
+			<?php
+			$mydb->setQuery("SELECT * FROM tblquisionerlist where COMPANYID = $job->COMPANYID AND JOBID = $job->JOBID");
+			$cur = $mydb->loadResultList();
+			require_once('../../config/conn.php');
+			foreach ($cur as $quiz ) {
+				$question = $koneksi->query("SELECT * FROM tblquisioner where QID = '".$quiz->QUISIONERLISTID."' order by QUISIONERID asc ");
+				$i = 1 ;
+				while($row =$question->fetch_assoc()){ ?>
+					<ul class="q-items list-group mt-4 mb-4">
+						<li class="q-field list-group-item">
+							<strong><?php echo ($i++). '. '; ?> <?php echo $row['QUESTION']; ?></strong>
+							<br>
+							<br>
+							<?php
+							$mydb->setQuery("SELECT answer FROM tblquisionerresult where QUISIONERID = ".$row['QUISIONERID']." AND QUISIONERLISTID = ".$row['QID']." AND APPLICANTID = $appl->APPLICANTID");
+							$res = $mydb->loadSingleResult();
+							?>
+							<p><?= $res->answer; ?></p>
+
+						</li>
+					</ul>	
+				<?php }
+			}
+				
+			?>
+			
+			<p>Update Applicant Status</p>
+			<select class="form-control" name="REMARKS" id="REMARKS">
+				<option value="Success" <?= ($jobreg->REMARKS == "Success") ? "Selected" : "" ?>>Hire</option>
+				<option value="Pending" <?= ($jobreg->REMARKS == "Pending") ? "Selected" : "" ?>>Pending</option>
+				<option value="Failed" <?= ($jobreg->REMARKS == "Failed") ? "Selected" : "" ?>>Failed</option>
+			</select>
+
+		<?php }
 		?>
 
-		<!-- <textarea class="input-group" name="REMARKS"><?php echo isset($jobreg->REMARKS) ? $jobreg->REMARKS : ""; ?></textarea> -->
 	</div>
 	<div class="col-sm-12  submitbutton "> 
 		<button type="submit" name="submit" class="btn btn-primary">Send</button>

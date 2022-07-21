@@ -149,11 +149,11 @@
                         <!-- form -->
                         <form method="post" action="process.php?action=login">
                             <div class="mb-3">
-                                <label for="nim" class="form-label">NIK/NIM</label>
+                                <label for="nim" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="nim"
                                     aria-describedby="nimHelp" name="USERNAME"  value="<?php if(isset($_COOKIE["member_login"])) { echo $_COOKIE["member_login"]; } ?>" />
                                 <div id="nimHelp" class="form-text">
-                                    Gunakan NIM/NIK yang telah terdaftar.
+                                    Gunakan Username yang telah terdaftar.
                                 </div>
                             </div>
                             <div class="mb-3">

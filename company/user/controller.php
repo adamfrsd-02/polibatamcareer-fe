@@ -58,11 +58,10 @@ switch ($action) {
 	if(isset($_POST['save'])){
 
 
-			$user = New User(); 
-			$user->FULLNAME 		= $_POST['U_NAME'];
-			$user->USERNAME			= $_POST['U_USERNAME'];
-			$user->PASS				=sha1($_POST['U_PASS']);
-			$user->ROLE				= $_POST['U_ROLE'];
+			$user = New Company(); 
+			$user->COMPANYNAME 		= $_POST['U_NAME'];
+			$user->COMPANYUSERNAME			= $_POST['U_USERNAME'];
+			$user->COMPANYPASSWORD				=sha1($_POST['U_PASS']);
 			$user->update($_POST['USERID']);
 
 			
@@ -115,12 +114,12 @@ switch ($action) {
 			$type = $_FILES['photo']['type'];
 			$temp = $_FILES['photo']['tmp_name'];
 			$myfile =$_FILES['photo']['name'];
-		 	$location="photos/".$myfile;
+		 	$location=$_POST['id']."_".$myfile;
 
 
 		if ( $errofile > 0) {
 				message("No Image Selected!", "error");
-				redirect("index.php?view=view&id=". $_GET['id']);
+				redirect("index.php?view=view&id=". $_POST['id']);
 		}else{
 	 
 				@$file=$_FILES['photo']['tmp_name'];
@@ -130,15 +129,15 @@ switch ($action) {
 
 			if ($image_size==FALSE ) {
 				message("Uploaded file is not an image!", "error");
-				redirect("index.php?view=view&id=". $_GET['id']);
+				redirect("index.php?view=view&id=". $_POST['id']);
 			}else{
 					//uploading the file
-					move_uploaded_file($temp,"photos/" . $myfile);
+					move_uploaded_file($temp,"../../assets/upload/company_logo/".$_POST['id']."_". $myfile);
 		 	
 					 
 
-						$user = New User();
-						$user->PICLOCATION 			= $location;
+						$user = New Company();
+						$user->COMPANYLOGO	= $location;
 						$user->update($_SESSION['COMPANY_USERID']);
 						redirect("index.php?view=view");
 						 
